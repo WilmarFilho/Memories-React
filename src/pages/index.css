@@ -1,0 +1,165 @@
+.login {
+    background-image: url('./assets/login.webp');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    padding: 0 var(--padding-global);
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    color: white;
+}
+
+.titles {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.login article {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+}
+
+.Inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.login  article div h1 {
+    font-size: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Happy Monkey;
+}
+
+.titles p {
+    text-align: center;
+    font-size: 12px;
+    font-family: Comfortaa;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    font-family: Comfortaa;
+}
+
+.contentInput {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contentInput label {
+    font-size: 16px;
+    text-transform: capitalize;
+    text-align: start;
+}
+
+.contentInput input {
+    height: 65px;
+    border-radius: 100px;
+    padding: 0 24px;
+    background: #d6d6d6c2;
+    outline: none;
+    border: none;
+}
+
+.contentInput input::placeholder {
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.329);
+}
+
+.contentSubmitt button {
+    width: 100%;
+    background-color: #ED3541;
+    border-radius: 100px;
+    height: 70px;
+    font-size: 24px;
+    text-align: center;
+    color: white;
+    border: none;
+    outline: none;
+}
+
+.rodapeLogin {
+    font-size: 16px;
+    color: white;
+    text-align: center;
+}
+
+.rodapeLogin span {
+    cursor: pointer;
+    color: #FF0000;
+}
+
+
+
+
+@media (min-width: 1201px) and (max-width: 1400px) {}
+
+@media (min-width: 992px) and (max-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .login {
+        justify-content: center;
+    }
+    .contentSubmitt button {
+        width: 75%;
+        height: 50px;
+        font-size: 20px;
+    }
+    .contentSubmitt  {
+       text-align: left;
+    }
+    .rodapeLogin {
+        text-align: left;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 767.9px) {
+    .login {
+        justify-content: center;
+        background-position: center;
+    }
+    .login  article div h1 {
+        font-size: 30px;
+        text-align: left;
+    }
+    .titles p {
+        font-size: 12px;
+        text-align: left;
+    }
+    .contentInput label {
+        font-size: 14px;
+    }
+    .contentInput input {
+        height: 50px;
+        max-width: 500px;
+    }
+    .contentInput input::placeholder {
+        font-size: 13px;
+    }
+    .contentSubmitt button {
+        width: 75%;
+        max-width: 500px;
+        height: 50px;
+        font-size: 20px;
+    }
+    .contentSubmitt  {
+       text-align: left;
+    }
+    .rodapeLogin {
+        text-align: left;
+        font-size: 14px;
+    }
+}

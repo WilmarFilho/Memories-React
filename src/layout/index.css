@@ -1,0 +1,99 @@
+* {
+    margin: 0 !important;
+}
+
+:root {
+    --padding-global: 96px;
+}
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
+body {
+    font-family: "Comfortaa";
+    color: 252525;
+    background-color: #D6D6D6;
+}
+
+header {
+    padding: 12px var(--padding-global);
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ed354193;
+    width: 100%;
+    z-index: 5;
+}
+
+.content-Logo a {
+    text-transform: uppercase;
+    color: white;
+    font-size: 40px;
+    font-family: Happy Monkey;
+}
+
+/*.content-NavHeader {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.NavHeader {
+    display: flex;
+    gap: 50px;
+    font-family: "bad Script";
+    list-style: none;
+    font-size: 32px;
+}
+
+
+footer * {
+    justify-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+footer {
+    padding: 0 150px;
+    background-color: #070707;
+    border-radius: 200px 200px 0 0;
+}
+
+footer h4 {
+    font-family: Bad Script;
+}
+
+footer p {
+    opacity: 0.5;
+}
+
+.NavFooter {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    padding: 0;
+    opacity: 0.5;
+}
+*/
+
+
+@media (min-width: 1401px) {}
+
+@media (min-width: 1201px) and (max-width: 1400px) {}
+
+@media (min-width: 993px) and (max-width: 1200px) {}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    :root {
+        --padding-global: 70px;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 767.9px) {
+    :root {
+        --padding-global: 48px;
+    }
+}
+
