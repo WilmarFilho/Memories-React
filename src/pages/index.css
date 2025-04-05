@@ -101,7 +101,71 @@
     color: #FF0000;
 }
 
+.home {
+    height: 800px;
+    padding: 0 var(--padding-global);
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    align-items: center;
+}
 
+.content-qr, .pages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.cardPages {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.cardPage {
+    height: 64px;
+    border-radius: 100px;
+    background-color: #ed3541e3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-family: Comfortaa;
+    font-size: 16px;
+    color: white;
+}
+
+.pages {
+    gap: 50px;
+}
+
+.pages button {
+    background-color: #252525;
+    border-radius: 100px;
+    width: 100%;
+    font-family: Happy Monkey;
+    font-size: 24px;
+    color: white;
+    align-items: center;
+    height: 74px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+}
+
+.content-qr {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.content-qr p {
+    width: 100%;
+}
 
 
 @media (min-width: 1201px) and (max-width: 1400px) {}
