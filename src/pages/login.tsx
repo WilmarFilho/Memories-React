@@ -1,5 +1,4 @@
 import './index.css';
-import logo from './assets/a.svg';
 import './assets/login.webp';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';

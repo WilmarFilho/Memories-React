@@ -32,7 +32,7 @@
     gap: 24px;
 }
 
-.login  article div h1 {
+.login article div h1 {
     font-size: 40px;
     text-align: center;
     text-transform: uppercase;
@@ -101,20 +101,32 @@
     color: #FF0000;
 }
 
-.home {
-    height: 800px;
-    padding: 0 var(--padding-global);
+.WrapperDashboard {
+    padding: 64px var(--padding-global);
+}
+
+.dashboard {
+    height: 650px;
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0 0 40px -5px rgba(0, 0, 0, 0.1);
     display: flex;
+    border-radius: 50px;
     justify-content: center;
     gap: 64px;
     align-items: center;
 }
 
-.content-qr, .pages {
+.content-qr,
+.pages {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.content-qr {
+    gap: 30px;
 }
 
 .cardPages {
@@ -137,11 +149,22 @@
     color: white;
 }
 
+.iconsCard {
+    display: flex;
+    gap: 8px;
+}
+
+.iconsCard img {
+    width: 30px;
+    height: 30px;
+}
+
 .pages {
     gap: 50px;
 }
 
-.pages button {
+.pages button,
+.addPage button {
     background-color: #252525;
     border-radius: 100px;
     width: 100%;
@@ -163,10 +186,72 @@
 
 }
 
-.content-qr p {
+.content-qr p,
+.content-qr h2 {
     width: 100%;
+    text-align: center;
 }
 
+.customFileUpload {
+    background-color: #d6d6d6d3;
+    border-radius: 60px;
+    width: 100%;
+    height: 60px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    transition:  0.3s ;
+}
+
+.customFileUpload:hover {
+    background-color: #c0c0c0;
+}
+
+.customInput {
+    background-color: #d6d6d6d3;
+    border-radius: 20px;
+    width: 100%;
+    height: 180px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: #333;
+}
+
+.addPage input[type="file"] {
+    display: none;
+}
+
+.addPage {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0 0 40px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    padding: 64px;
+    justify-content: center;
+    gap: 64px;
+    align-items: start;
+}
+
+.customPage {
+    background-image: url('./assets/page.webp');
+    background-size: cover;
+    height: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (min-width: 1201px) and (max-width: 1400px) {}
 
@@ -176,14 +261,17 @@
     .login {
         justify-content: center;
     }
+
     .contentSubmitt button {
         width: 75%;
         height: 50px;
         font-size: 20px;
     }
-    .contentSubmitt  {
-       text-align: left;
+
+    .contentSubmitt {
+        text-align: left;
     }
+
     .rodapeLogin {
         text-align: left;
         font-size: 14px;
@@ -195,33 +283,41 @@
         justify-content: center;
         background-position: center;
     }
-    .login  article div h1 {
+
+    .login article div h1 {
         font-size: 30px;
         text-align: left;
     }
+
     .titles p {
         font-size: 12px;
         text-align: left;
     }
+
     .contentInput label {
         font-size: 14px;
     }
+
     .contentInput input {
         height: 50px;
         max-width: 500px;
     }
+
     .contentInput input::placeholder {
         font-size: 13px;
     }
+
     .contentSubmitt button {
         width: 75%;
         max-width: 500px;
         height: 50px;
         font-size: 20px;
     }
-    .contentSubmitt  {
-       text-align: left;
+
+    .contentSubmitt {
+        text-align: left;
     }
+
     .rodapeLogin {
         text-align: left;
         font-size: 14px;

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from '../services/api';
+import './assets/page.webp';
 
 
 export default function CustomPage() {
@@ -31,7 +32,7 @@ export default function CustomPage() {
     }, [hash]);
 
     return (
-        <div>
+        <div className='customPage'>
 
             {paginas ?  paginas.map((pagina, index) => (
                 <h1>{pagina.descricao}</h1>
