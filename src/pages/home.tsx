@@ -5,6 +5,7 @@ import axios from 'axios';
 import api from '../services/api';
 import iconEdit from './assets/edit.svg'
 import iconDelete from './assets/delete.svg'
+import addMain from './assets/addMainPage.svg'
 import QRCodeComponent from '../services/qr';
 
 
@@ -61,12 +62,13 @@ export default function Home() {
         <div className='WrapperDashboard'>
             <section className="dashboard row">
 
-                <div className="col-10  col-md-9 col-lg-5 pages">
+                <div className="col-12  col-md-9 col-lg-5 pages">
                     <div className='cardPages'>
 
                         {paginas ? paginas.map((pagina, index) => (
                             <div className='cardPage'>
-                                <span>Página #1 - {pagina.descricao}</span>
+                                <span>Página #1</span>
+                                <span> {pagina.descricao}</span>
                                 <div className='iconsCard'>
                                     <img src={iconEdit} />
                                     <img src={iconDelete} />
@@ -77,11 +79,11 @@ export default function Home() {
                     </div>
 
                     <button onClick={RetornaPageAdd}>
-                        Adicionar Nova Página <img></img>
+                        Adicionar Nova Página <img className='addMainSvg' src={addMain} />
                     </button>
                 </div>
 
-                <div className="col-10 col-md-9 col-lg-5 content-qr">
+                <div className="col-12 col-md-9 col-lg-5 content-qr">
                     <h2>Compartilhe seu qr ou link com suas memorias </h2>
                     <QRCodeComponent userHash={user?.hash}></QRCodeComponent>
                 </div>

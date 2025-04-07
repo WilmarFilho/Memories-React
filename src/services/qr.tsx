@@ -7,8 +7,8 @@ export default function QRCodeComponent({ userHash }: { userHash?: string }) {
 
     return (
         <>
-            <QRCode value={finalUrl} size={350} />
-            <p>Link: <a href={finalUrl} target="_blank" rel="noopener noreferrer">{finalUrl}</a></p>
+            <QRCode value={finalUrl} className='QRCode'/>
+            <p className='linkQRCode'>Link: <a href={finalUrl} target="_blank" rel="noopener noreferrer">{finalUrl}</a></p>
         </>
     );
 }

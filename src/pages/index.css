@@ -137,16 +137,18 @@
 }
 
 .cardPage {
-    height: 64px;
-    border-radius: 100px;
+    height: auto;
+    padding: 16px 40px;
+    border-radius: 40px;
+    gap: 10px;
     background-color: #ed3541e3;
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
-    padding: 0 24px;
     font-family: Comfortaa;
     font-size: 16px;
     color: white;
+    flex-direction: column;
 }
 
 .iconsCard {
@@ -154,7 +156,8 @@
     gap: 8px;
 }
 
-.iconsCard img {
+.iconsCard img,
+.addMainSvg {
     width: 30px;
     height: 30px;
 }
@@ -166,7 +169,7 @@
 .pages button,
 .addPage button {
     background-color: #252525;
-    border-radius: 100px;
+    border-radius: 30px;
     width: 100%;
     font-family: Happy Monkey;
     font-size: 24px;
@@ -174,7 +177,9 @@
     align-items: center;
     height: 74px;
     display: flex;
-    justify-content: center;
+    gap: 16px;
+    padding: 0 40px;
+    justify-content: start;
     text-transform: uppercase;
     outline: none;
     border: none;
@@ -192,6 +197,12 @@
     text-align: center;
 }
 
+
+.content-qr h2 {
+    font-size: 24px;
+    font-family: Happy Monkey;
+}
+
 .customFileUpload {
     background-color: #d6d6d6d3;
     border-radius: 60px;
@@ -200,11 +211,11 @@
     padding: 0 24px;
     display: flex;
     align-items: center;
-    justify-content: start;
+    justify-content: space-between;
     cursor: pointer;
     font-size: 16px;
     color: #333;
-    transition:  0.3s ;
+    transition: 0.3s;
 }
 
 .customFileUpload:hover {
@@ -220,7 +231,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
     font-size: 16px;
     outline: none;
     border: none;
@@ -240,8 +250,15 @@
     border-radius: 50px;
     padding: 64px;
     justify-content: center;
-    gap: 64px;
+    gap: 24px;
     align-items: start;
+}
+
+.addPage div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .customPage {
@@ -253,11 +270,139 @@
     align-items: center;
 }
 
-@media (min-width: 1201px) and (max-width: 1400px) {}
+.QRCode {
+    width: 325px;
+    height: 325px;
+}
 
-@media (min-width: 992px) and (max-width: 1200px) {}
+.linkQRCode {
+    font-size: 14px;
+    font-family: Comfortaa;
+    color: #ed3541d2;
+    overflow: hidden;
+}
 
-@media (min-width: 768px) and (max-width: 991px) {
+.previewImages {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+}
+
+.imagePreview {
+    background-image: url('./assets/bgPolaroid.png');
+    background-size: cover;
+    background-position: center;
+    height: 420px;
+    width: 358px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        width: 278px;
+    }
+
+    .QRCode {
+        width: 300px;
+        height: 300px;
+    }
+
+    .pages button,
+    .addPage button {
+        font-size: 18px;
+        height: 54px;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 25px;
+        height: 25px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 260px;
+        width: 220px;
+    }
+
+    .QRCode {
+        width: 250px;
+        height: 250px;
+    }
+
+    .pages button,
+    .addPage button {
+        font-size: 16px;
+        height: 44px;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cardPage {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.999px) {
+    .WrapperDashboard {
+        padding: 40px var(--padding-global);
+    }
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 190px;
+        width: 150px;
+    }
+
+    .dashboard {
+        height: auto;
+        padding: 3em 0;
+    }
+
+    .QRCode {
+        width: 250px;
+        height: 250px;
+    }
+
+    .content-qr h2,
+    .content-qr p {
+        text-align: start;
+    }
+
+    .pages button,
+    .addPage button {
+        font-size: 16px;
+        height: 44px;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cardPage {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+    }
+
     .login {
         justify-content: center;
     }
@@ -278,7 +423,170 @@
     }
 }
 
-@media (min-width: 100px) and (max-width: 767.9px) {
+@media (min-width: 529px) and (max-width: 767.9px) {
+    .WrapperDashboard {
+        padding: 40px var(--padding-global);
+    }
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 320px;
+        width: 320px;
+    }
+
+    .previewImages {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: start;
+    }
+
+    .dashboard {
+        height: auto;
+        padding: 3em 0;
+    }
+
+    .QRCode {
+        width: 250px;
+        height: 250px;
+    }
+
+    .content-qr h2,
+    .content-qr p {
+        text-align: start;
+    }
+
+    .pages button,
+    .addPage button {
+        font-size: 16px;
+        height: 44px;
+        padding: 24px;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cardPage {
+        flex-direction: column;
+        height: auto;
+        gap: 8px;
+        padding: 24px;
+    }
+
+    .login {
+        justify-content: center;
+        background-position: center;
+    }
+
+    .login article div h1 {
+        font-size: 30px;
+        text-align: left;
+    }
+
+    .titles p {
+        font-size: 12px;
+        text-align: left;
+    }
+
+    .contentInput label {
+        font-size: 14px;
+    }
+
+    .contentInput input {
+        height: 50px;
+        max-width: 500px;
+    }
+
+    .contentInput input::placeholder {
+        font-size: 13px;
+    }
+
+    .contentSubmitt button {
+        width: 75%;
+        max-width: 500px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .contentSubmitt {
+        text-align: left;
+    }
+
+    .rodapeLogin {
+        text-align: left;
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 528.99px) {
+    .WrapperDashboard {
+        padding: 32px var(--padding-global);
+    }
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 275px;
+        width: 100%;
+    }
+
+    .previewImages {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addPage {
+        padding: 2em;
+    }
+
+    .addPage p,
+    .addPage label {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        padding: 2em 0;
+        height: auto;
+    }
+
+    .QRCode {
+        width: 200px;
+        height: 200px;
+    }
+
+    .pages button,
+    .addPage button {
+        font-size: 14px;
+        height: 40px;
+        padding: 24px;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .cardPage {
+        font-size: 14px;
+        height: auto;
+        padding: 24px;
+        text-align: center;
+        gap: 8px;
+    }
+
+    .content-qr h2 {
+        font-size: 18px;
+        text-align: start;
+    }
+
+    .content-qr p {
+        font-size: 12px;
+        text-align: start;
+    }
+
     .login {
         justify-content: center;
         background-position: center;

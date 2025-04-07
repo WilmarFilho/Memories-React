@@ -8,11 +8,11 @@ export default function Footer() {
 
             <section className="col-12 row topFooter">
 
-                <div className="col-9 col-md-4 col-lg-4 d-flex content-Logo-Footer">
+                <div className="col-12 col-md-4 col-lg-4 d-flex content-Logo-Footer">
                     <div className='footerWrapper'>
                         <a href='https://seudrink.framer.website'><h4>Memories</h4></a>
                     </div>
-                    <div className='wrapperSobre'>
+                    <div className='wrapperSobre col-8'>
                         <p>Transforme momentos especiais em lembranças eternas.</p>
                         <div className="iconsFooter">
                             <img src={iconWpp} />
@@ -38,7 +38,7 @@ export default function Footer() {
 
                 <div className="col-12 col-md-4 col-lg-4 d-flex content-Menu-2">
                     <div className='footerWrapper'>
-                        <h4>Links de ajuda</h4>
+                        <h4>Ajuda</h4>
                     </div>
                     <ul className='NavFooter'>
                         <li><a href='https://memorias.framer.website/'>Política de privacidade</a></li>
