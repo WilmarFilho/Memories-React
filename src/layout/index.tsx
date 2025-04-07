@@ -14,9 +14,9 @@ export default function Layout() {
 
     return (
         <div>
-            {location.pathname !== '/login' && location.pathname !== '/register' ? (
+            {(location.pathname === '/nova-pagina' || location.pathname === '/dashboard') && (
                 <Header></Header>
-            ) : null}
+            )}
 
             <main>
                 <Outlet /> {/* Aqui as páginas serão renderizadas */}

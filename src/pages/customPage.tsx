@@ -2,6 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import api from '../services/api';
 import './assets/page.webp';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y, EffectCoverflow, Mousewheel } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
+
 
 
 export default function CustomPage() {
@@ -31,12 +39,126 @@ export default function CustomPage() {
         }
     }, [hash]);
 
+    //<img src={`https://apimemories.celleta.com/${pagina.img_01}`} />
+
     return (
         <div className='customPage'>
 
-            {paginas ?  paginas.map((pagina, index) => (
-                <h1>{pagina.descricao}</h1>
-            )) : null}
+            {paginas ? (
+                <Swiper
+                    modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
+                    spaceBetween={0}
+                    slidesPerView={1}
+                    centeredSlides={true}
+                    observer={true}
+                    observeParents={true}
+                    initialSlide={1}
+                    scrollbar={{ draggable: true }}
+                    navigation // ← Ativa as setas
+                    mousewheel={true} // ← Habilita scroll com mouse
+
+                >
+
+                    {paginas.map((pagina, index) => (
+                        <SwiperSlide>
+                            <div className='content-slide'>
+
+                                <div className='SlidePageBot'>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                        nisi ut aliquip cepteur sint occaem.
+                                    </p>
+                                </div>
+                                <div className='SlidePageTop'>
+                                    <div className='contentImagesPageTop col-12'>
+                                        <div className='imgPageTeste'></div>
+                                        <div className='imgPageTeste'></div>
+                                    </div>
+                                    <div className='contentImagesPageBot col-12' >
+                                        <div className='imgPageTeste'></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </SwiperSlide>
+                    ))}
+
+                    <SwiperSlide>
+                        <div className='content-slide'>
+
+                            <div className='SlidePageBot'>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip cepteur sint occaem.
+                                </p>
+                            </div>
+                            <div className='SlidePageTop'>
+                                <div className='contentImagesPageTop col-12'>
+                                    <div className='imgPageTeste'></div>
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                                <div className='contentImagesPageBot col-12' >
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <div className='content-slide'>
+
+                            <div className='SlidePageBot'>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip cepteur sint occaem.
+                                </p>
+                            </div>
+                            <div className='SlidePageTop'>
+                                <div className='contentImagesPageTop col-12'>
+                                    <div className='imgPageTeste'></div>
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                                <div className='contentImagesPageBot col-12' >
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </SwiperSlide>
+
+                    <SwiperSlide>
+                        <div className='content-slide'>
+
+                            <div className='SlidePageBot'>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                                    nisi ut aliquip cepteur sint occaem.
+                                </p>
+                            </div>
+                            <div className='SlidePageTop'>
+                                <div className='contentImagesPageTop col-12'>
+                                    <div className='imgPageTeste'></div>
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                                <div className='contentImagesPageBot col-12' >
+                                    <div className='imgPageTeste'></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </SwiperSlide>
+                </Swiper>
+            ) : (
+                null
+            )
+            }
+
+
 
         </div>
     )
