@@ -65,18 +65,16 @@ export default function CustomPage() {
 
                                 <div className='SlidePageBot'>
                                     <p>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                        nisi ut aliquip cepteur sint occaem.
+                                        {pagina.descricao}
                                     </p>
                                 </div>
                                 <div className='SlidePageTop'>
                                     <div className='contentImagesPageTop col-12'>
-                                        <div className='imgPageTeste'></div>
-                                        <div className='imgPageTeste'></div>
+                                        <img className='imgPageTeste' src={`https://apimemories.celleta.com/${pagina.img_01}`} />
+                                        <img className='imgPageTeste' src={`https://apimemories.celleta.com/${pagina.img_02}`} />
                                     </div>
                                     <div className='contentImagesPageBot col-12' >
-                                        <div className='imgPageTeste'></div>
+                                        <img className='imgPageTeste' src={`https://apimemories.celleta.com/${pagina.img_03}`} />
                                     </div>
                                 </div>
                             </div>
@@ -84,74 +82,7 @@ export default function CustomPage() {
                         </SwiperSlide>
                     ))}
 
-                    <SwiperSlide>
-                        <div className='content-slide'>
 
-                            <div className='SlidePageBot'>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip cepteur sint occaem.
-                                </p>
-                            </div>
-                            <div className='SlidePageTop'>
-                                <div className='contentImagesPageTop col-12'>
-                                    <div className='imgPageTeste'></div>
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                                <div className='contentImagesPageBot col-12' >
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='content-slide'>
-
-                            <div className='SlidePageBot'>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip cepteur sint occaem.
-                                </p>
-                            </div>
-                            <div className='SlidePageTop'>
-                                <div className='contentImagesPageTop col-12'>
-                                    <div className='imgPageTeste'></div>
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                                <div className='contentImagesPageBot col-12' >
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className='content-slide'>
-
-                            <div className='SlidePageBot'>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                                    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                                    nisi ut aliquip cepteur sint occaem.
-                                </p>
-                            </div>
-                            <div className='SlidePageTop'>
-                                <div className='contentImagesPageTop col-12'>
-                                    <div className='imgPageTeste'></div>
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                                <div className='contentImagesPageBot col-12' >
-                                    <div className='imgPageTeste'></div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </SwiperSlide>
                 </Swiper>
             ) : (
                 null

@@ -1,5 +1,5 @@
 import './index.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import api from '../services/api';
@@ -7,6 +7,7 @@ import iconEdit from './assets/edit.svg'
 import iconDelete from './assets/delete.svg'
 import addMain from './assets/addMainPage.svg'
 import QRCodeComponent from '../services/qr';
+import FeedbackModal from '../components/FeedbackModal';
 
 
 
@@ -32,6 +33,19 @@ export default function Home() {
         hash_id: string;
         user_id: number;
     }
+
+    const location = useLocation();
+    const feedback = location.state?.feedback;
+    const [modalMessage, setModalMessage] = useState('');
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+        if (feedback === "criado") {
+            setModalMessage("Página criada com sucesso!");
+        } else if (feedback === "editado") {
+            setModalMessage("Página editada com sucesso!");
+        }
+    }, [feedback]);
 
     const [user, setUser] = useState<User | null>(null);
     const [paginas, setPaginas] = useState<Page[] | null>([]);
@@ -60,21 +74,59 @@ export default function Home() {
 
     return (
         <div className='WrapperDashboard'>
+            <div>
+                {modalMessage && (
+                    <FeedbackModal
+                        message={modalMessage}
+                        onClose={() => setModalMessage('')}
+                    />
+                )}
+
+                {/* resto do seu dashboard */}
+            </div>
+
             <section className="dashboard row">
 
                 <div className="col-12  col-md-9 col-lg-5 pages">
                     <div className='cardPages'>
 
                         {paginas ? paginas.map((pagina, index) => (
-                            <div className='cardPage'>
-                                <span>Página #1</span>
-                                <span> {pagina.descricao}</span>
+                            <div className='cardPage' key={pagina.id}>
+                                <span>Página #{index + 1}</span>
+                                <span>{pagina.descricao.slice(0, 40)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
+
                                 <div className='iconsCard'>
-                                    <img src={iconEdit} />
-                                    <img src={iconDelete} />
+                                    <img
+                                        src={iconEdit}
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={() => {
+                                            // redirecionar para rota de edição com userHash e pageId
+                                            navigate(`/nova-pagina/${user?.hash}/${pagina.id}`);
+                                        }}
+                                    />
+                                    <img
+                                        src={iconDelete}
+                                        style={{ cursor: 'pointer' }}
+                                        onClick={async () => {
+                                            const confirm = window.confirm('Deseja realmente deletar esta página?');
+                                            if (!confirm) return;
+
+                                            try {
+                                                await api.delete(`/page/${pagina.id}`);
+                                                alert('Página deletada com sucesso!');
+                                                // Remove do estado local para atualizar a lista sem recarregar
+                                                const novaLista = paginas.filter((p) => p.id !== pagina.id);
+                                                setPaginas(novaLista);
+                                            } catch (err) {
+                                                alert('Erro ao deletar a página.');
+                                                console.error(err);
+                                            }
+                                        }}
+                                    />
                                 </div>
                             </div>
                         )) : null}
+
 
                     </div>
 

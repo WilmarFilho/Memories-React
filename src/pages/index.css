@@ -294,9 +294,6 @@
 .imgPageTeste {
     height: 100%;
     width: 50%;
-    background-image: url('./assets/Frame\ 22.png');
-    background-size: 150%;
-    background-position: center;
     border-radius: 30px;
     border: 2px solid red
 }
@@ -325,6 +322,7 @@
 
 .SlidePageBot {
     color: white;
+    word-break: break-word;
     font-size: 32px;
     width: 45%;
     display: flex;
@@ -396,6 +394,18 @@
 }
 
 .swiper-slide-active {}
+
+.imagePreviewWrapper button.removeImageBtn {
+    margin: 25px !important;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    background-color: red;
+}
 
 
 @media (min-width: 1201px) and (max-width: 1400px) {

@@ -1,0 +1,29 @@
+/* FeedbackModal.css */
+.modalFeedback {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #1d1d1f;
+    padding: 16px 24px;
+    border-radius: 12px;
+    color: #fff;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    animation: slideIn 0.3s ease-out;
+    z-index: 9999;
+}
+
+.modalContent {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

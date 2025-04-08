@@ -29,7 +29,7 @@ function App() {
           />
 
           <Route
-            path='/nova-pagina'
+            path='/nova-pagina/:userHash?/:pageId?'
             element={
               <PrivateRoute>
                 <Newpage></Newpage>
