@@ -52,7 +52,7 @@ export default function CustomPage() {
                     centeredSlides={true}
                     observer={true}
                     observeParents={true}
-                    initialSlide={1}
+                    initialSlide={0}
                     scrollbar={{ draggable: true }}
                     navigation // ← Ativa as setas
                     mousewheel={true} // ← Habilita scroll com mouse

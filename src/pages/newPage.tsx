@@ -179,9 +179,8 @@ export default function Newpage() {
 
                 <div>
                     <label>Digite a descrição para sua página</label>
-                    <input
+                    <textarea
                         className='customInput'
-                        type="text"
                         placeholder="O dia em que começamos o nosso noivado..."
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}

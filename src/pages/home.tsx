@@ -39,11 +39,19 @@ export default function Home() {
     const [modalMessage, setModalMessage] = useState('');
 
     useEffect(() => {
+        api.get('/user')
+            .then((response) => setUser(response.data))
+            .catch(() => console.log('Erro'));
+    }, []);
+
+    useEffect(() => {
         window.scrollTo(0, 0);
         if (feedback === "criado") {
             setModalMessage("Página criada com sucesso!");
+            navigate(location.pathname, { replace: true });
         } else if (feedback === "editado") {
             setModalMessage("Página editada com sucesso!");
+            navigate(location.pathname, { replace: true });
         }
     }, [feedback]);
 
@@ -56,11 +64,7 @@ export default function Home() {
         navigate("/nova-pagina");
     }
 
-    useEffect(() => {
-        api.get('/user')
-            .then((response) => setUser(response.data))
-            .catch(() => console.log('Erro'));
-    }, []);
+
 
     useEffect(() => {
         if (user) {
@@ -93,7 +97,7 @@ export default function Home() {
                         {paginas ? paginas.map((pagina, index) => (
                             <div className='cardPage' key={pagina.id}>
                                 <span>Página #{index + 1}</span>
-                                <span>{pagina.descricao.slice(0, 40)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
+                                <span>{pagina.descricao.slice(0, 25)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
 
                                 <div className='iconsCard'>
                                     <img

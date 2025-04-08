@@ -12,8 +12,8 @@ export default function Footer() {
                     <div className='footerWrapper'>
                         <a href='https://seudrink.framer.website'><h4>Memories</h4></a>
                     </div>
-                    <div className='wrapperSobre col-8'>
-                        <p>Transforme momentos especiais em lembranças eternas.</p>
+                    <div className='wrapperSobre col-11'>
+                        <p className='bio'>Transforme momentos especiais em lembranças eternas.</p>
                         <div className="iconsFooter">
                             <img src={iconWpp} />
                             <img src={iconInsta} />

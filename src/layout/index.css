@@ -34,7 +34,7 @@ header {
 footer {
     padding: 64px var(--padding-global) 0 var(--padding-global) ;
     background-color: #121212;
-    border-radius: 200px 200px 0 0;
+    border-radius: 90px 90px 0 0;
     color: #ffffffc5;
     text-transform: uppercase;
 }
@@ -94,13 +94,38 @@ footer p, footer li {
     align-items: center;
 }
 
+.bio {
+    font-size: 24px;
+    text-transform: none;
+}
+
 @media (min-width: 1401px) {}
 
-@media (min-width: 1201px) and (max-width: 1400px) {}
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .bio {
+        font-size: 20px;
+        text-transform: none;
+    }
+    .content-Logo-Footer {
+        height: auto;
+    }
+}
 
-@media (min-width: 993px) and (max-width: 1200px) {}
+@media (min-width: 993px) and (max-width: 1200px) {
+    .bio {
+        font-size: 20px;
+        text-transform: none;
+    }
+    .content-Logo-Footer {
+        height: auto;
+    }
+}
 
 @media (min-width: 768px) and (max-width: 992px) {
+    .bio {
+        font-size: 16px;
+        text-transform: none;
+    }
     :root {
         --padding-global: 70px;
     }
@@ -110,9 +135,16 @@ footer p, footer li {
     footer p, footer li {
         font-size: 14px;
     }
+    .content-Logo-Footer {
+        height: auto;
+    }
 }
 
 @media (min-width: 100px) and (max-width: 767.9px) {
+    .bio {
+        font-size: 16px;
+        text-transform: none;
+    }
     :root {
         --padding-global: 24px;
     }
