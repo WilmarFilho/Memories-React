@@ -1,6 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
 import api from '../services/api';
+
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y, EffectCoverflow, Mousewheel } from 'swiper/modules';
 import 'swiper/css';
@@ -8,22 +10,10 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-
+import Page from '../types/page';
 
 
 export default function CustomPage() {
-
-    interface Page {
-        id: number;
-        created_at: string;
-        updated_at: string;
-        img_01: string;
-        img_02: string;
-        img_03: string;
-        descricao: string;
-        hash_id: string;
-        user_id: number;
-    }
 
     const { hash } = useParams<{ hash: string }>();
     const [paginas, setPaginas] = useState<Page[] | null>([]);

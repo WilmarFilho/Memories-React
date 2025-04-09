@@ -1,41 +1,28 @@
-import './index.css';
+
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import api from '../services/api';
+
 import iconEdit from './assets/edit.svg'
 import iconDelete from './assets/delete.svg'
 import addMain from './assets/addMainPage.svg'
+import './index.css';
+
 import QRCodeComponent from '../services/qr';
-import FeedbackModal from '../components/FeedbackModal';
+import api from '../services/api';
+
+import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
+
+import Page from '../types/page';
+import User from '../types/user';
 
 
 
 export default function Home() {
-
-    interface User {
-        id: number;
-        name: string;
-        email: string;
-        hash: string;
-        created_at: string;
-        updated_at: string;
-    }
-
-    interface Page {
-        id: number;
-        created_at: string;
-        updated_at: string;
-        img_01: string;
-        img_02: string;
-        img_03: string;
-        descricao: string;
-        hash_id: string;
-        user_id: number;
-    }
-
+    
     const location = useLocation();
-    const feedback = location.state?.feedback;
+
+    const [user, setUser] = useState<User | null>(null);
+    const [paginas, setPaginas] = useState<Page[] | null>([]);
     const [modalMessage, setModalMessage] = useState('');
 
     useEffect(() => {
@@ -43,6 +30,18 @@ export default function Home() {
             .then((response) => setUser(response.data))
             .catch(() => console.log('Erro'));
     }, []);
+
+    useEffect(() => {
+        if (user) {
+
+            const rota = '/pages/' + user.hash;
+
+            api.get(rota)
+                .then((response) => setPaginas(response.data));
+        }
+    }, [user]);
+
+    const feedback = location.state?.feedback;
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -55,27 +54,13 @@ export default function Home() {
         }
     }, [feedback]);
 
-    const [user, setUser] = useState<User | null>(null);
-    const [paginas, setPaginas] = useState<Page[] | null>([]);
-
     const navigate = useNavigate();
 
     const RetornaPageAdd = () => {
         navigate("/nova-pagina");
     }
 
-
-
-    useEffect(() => {
-        if (user) {
-
-            const rota = '/pages/' + user.hash;
-
-            api.get(rota)
-                .then((response) => setPaginas(response.data));
-        }
-    }, [user]);
-
+   
     return (
         <div className='WrapperDashboard'>
             <div>

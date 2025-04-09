@@ -1,18 +1,14 @@
-import './index.css';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import upload from './assets/upload.svg';
+
 import addMain from './assets/addMainPage.svg';
-import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import './index.css';
+
 import api from '../services/api';
 
-interface Page {
-    id: number;
-    descricao: string;
-    img_01: string;
-    img_02: string;
-    img_03: string;
-}
+import Page from '../types/page';
+
 
 export default function Newpage() {
 

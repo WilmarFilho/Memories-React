@@ -16,13 +16,12 @@ export default function Login() {
     navigate("/register");
   }
 
-  // Se já estiver logado, redireciona para o dashboard
-  /*useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       navigate('/dashboard');
     }
-  }, []);*/
+  }, []);
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -1,8 +1,7 @@
-import React from 'react';
 import Header from './header';
 import Footer from './footer';
 import './index.css';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
 
 
