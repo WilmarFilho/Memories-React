@@ -43,6 +43,8 @@ export default function Newpage() {
 
     }, [userHash, pageId]);
 
+    const MAX_LENGTH = 200;
+
     function traduzirMensagem(mensagem: string): string {
         const traducoes: { [key: string]: string } = {
             "The img 01 field must not be greater than 2048 kilobytes.": "A imagem 1 não pode ter mais de 2MB.",
@@ -184,6 +186,9 @@ export default function Newpage() {
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
+                    <div style={{ fontSize: '12px', color: descricao.length >= MAX_LENGTH ? 'red' : '#666', marginTop: '4px' }}>
+                        {MAX_LENGTH - descricao.length} caracteres restantes
+                    </div>
                     {fieldErrors[`descricao`] && (
                         <p style={{ color: 'red', marginTop: '4px' }}>{fieldErrors[`descricao`]}</p>
                     )}

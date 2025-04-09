@@ -30,9 +30,9 @@ export default function Footer() {
                     </div>
                     <ul className='NavFooter'>
                         <li><a href='https://memorias.framer.website/'>Home</a></li>
-                        <li><a href='https://memorias.framer.website/'>Para quem</a></li>
-                        <li><a href='https://memorias.framer.website/'>Como usar</a></li>
-                        <li><a href='https://memorias.framer.website/'>depoimentos</a></li>
+                        <li><a href='https://memorias.framer.website/#paraquem'>Para quem</a></li>
+                        <li><a href='https://memorias.framer.website/#steps'>Como usar</a></li>
+                        <li><a href='https://memorias.framer.website/#depoimentos'>depoimentos</a></li>
                     </ul>
                 </div>
 

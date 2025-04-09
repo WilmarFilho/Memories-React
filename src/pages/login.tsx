@@ -1,9 +1,10 @@
 import './index.css';
 import './assets/login.webp';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import api from '../services/api';
+
 
 
 
@@ -15,6 +16,13 @@ export default function Login() {
     navigate("/register");
   }
 
+  // Se já estiver logado, redireciona para o dashboard
+  /*useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/dashboard');
+    }
+  }, []);*/
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

@@ -141,14 +141,16 @@ export default function Home() {
                     </div>
 
                     <button onClick={RetornaPageAdd}>
-                        Adicionar Nova Página <img className='addMainSvg' src={addMain} />
+                        Adicionar Página <img className='addMainSvg' src={addMain} />
                     </button>
                 </div>
 
-                <div className="col-12 col-md-9 col-lg-5 content-qr">
+                {paginas && paginas.length > 0 ? <div className="col-12 col-md-9 col-lg-5 content-qr">
                     <h2>Compartilhe seu qr ou link com suas memorias </h2>
                     <QRCodeComponent userHash={user?.hash}></QRCodeComponent>
-                </div>
+                </div> : <div style={{height: '250px'}} className="col-12 col-md-9 col-lg-5 content-qr"><h2 style={{textAlign: 'center'}}>Adicione sua primeira página e compartilhe seu qr ou link com suas memorias </h2></div> }
+
+
 
             </section>
         </div>

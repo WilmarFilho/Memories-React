@@ -7,44 +7,47 @@ import PrivateRoute from './PrivateRoute';
 import Home from './pages/home';
 import CustomPage from './pages/customPage';
 import Newpage from './pages/newPage';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
-
+const clientId = "107956742788-25vj17m0r48ao74o7n8b6ap82vhulnoi.apps.googleusercontent.com";
 
 function App() {
   return (
-    <Router>
-      <Routes>
+    <GoogleOAuthProvider clientId={clientId}>
+      <Router>
+        <Routes>
 
 
-        <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/" element={<Navigate to="/login" />} />
 
-        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<Layout />}>
 
-          <Route
-            path='/dashboard'
-            element={
-              <PrivateRoute>
-                <Home></Home>
-              </PrivateRoute>}
-          />
+            <Route
+              path='/dashboard'
+              element={
+                <PrivateRoute>
+                  <Home></Home>
+                </PrivateRoute>}
+            />
 
-          <Route
-            path='/nova-pagina/:userHash?/:pageId?'
-            element={
-              <PrivateRoute>
-                <Newpage></Newpage>
-              </PrivateRoute>}
-          />
+            <Route
+              path='/nova-pagina/:userHash?/:pageId?'
+              element={
+                <PrivateRoute>
+                  <Newpage></Newpage>
+                </PrivateRoute>}
+            />
 
-         
-          <Route path="/register" element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path="/pagina/:hash" element={<CustomPage />} />
 
-        </Route>
+            <Route path="/register" element={<Register />} />
+            <Route path='/login' element={<Login />} />
+            <Route path="/pagina/:hash" element={<CustomPage />} />
 
-      </Routes>
-    </Router>
+          </Route>
+
+        </Routes>
+      </Router>
+    </GoogleOAuthProvider>
   );
 }
 

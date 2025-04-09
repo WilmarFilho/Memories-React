@@ -469,25 +469,25 @@
     right: 5% !important;
 }
 
-@keyframes slideInTop {
+@keyframes fadeIn {
     0% {
       opacity: 0;
-      transform: translateY(80px);
+      
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
+     
     }
   }
   
   .slide-in-top {
-    animation: slideInTop 0.5s ease-out forwards;
+    animation: fadeIn 2s ease-out forwards;
   }
   .slide-in-top-2 {
-    animation: slideInTop 1s ease-out forwards;
+    animation: fadeIn 3s ease-out forwards;
   }
   .slide-in-top-3 {
-    animation: slideInTop 1.5s ease-out forwards;
+    animation: fadeIn 4s ease-out forwards;
   }
   
 
@@ -718,6 +718,7 @@
 }
 
 @media (min-width: 529px) and (max-width: 767.9px) {
+
     .swiper-button-prev {
         position: absolute !important;
         left: 10% !important;
@@ -730,21 +731,33 @@
         right: 10% !important;
     }
 
+    .customPage {
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('./assets/bg1.png');
+        background-position: center;
+        padding: 0;
+    }
+
+    .contentImagesPageTop {
+        gap: 8px;
+    }
+
     .SlidePageBot {
-        font-size: 20px;
+        font-size: 18px;
         width: 100%;
+        padding: 0 2em;
         height: fit-content;
     }
 
     .SlidePageTop {
         font-size: 28px;
         width: 100%;
-        height: 68%;
+        height: 70%;
+        gap: 8px;
         padding: 0 0 1em 0;
     }
 
     .imgPageTeste {
-        width: 40%;
+        width: 48%;
     }
 
     .swiper {
@@ -754,71 +767,93 @@
     }
 
     .content-slide {
-        justify-content: space-around;
+        justify-content: center;
         display: flex;
-        gap: 2em;
+        gap: 16px;
         flex-direction: column;
         height: 100%;
     }
 
     .WrapperDashboard {
-        padding: 40px var(--padding-global);
+        padding: 32px var(--padding-global);
     }
 
     .imagePreview {
         background-size: cover;
         background-position: center;
-        height: 320px;
-        width: 320px;
+        height: 275px;
+        width: 100%;
     }
 
     .previewImages {
         flex-direction: column !important;
         justify-content: center;
-        align-items: start;
+        align-items: center;
     }
 
-    .dashboard {
-        height: auto;
+    .addPage {
         padding: 2em;
     }
 
     .pages {
         padding: 0;
+        gap: 24px;
+    }
+
+    .addPage p,
+    .addPage label {
+        font-size: 14px;
+    }
+
+    .dashboard {
+        gap: 24px;
+        padding: 1em 1em 3em 1em;
+        height: auto;
     }
 
     .QRCode {
-        width: 250px;
-        height: 250px;
+        width: 200px;
+        height: 200px;
     }
 
-    .content-qr h2,
-    .content-qr p {
-        text-align: start;
+    .pages button,
+    .addPage button {
+        font-size: 14px;
+        height: 40px;
+        padding: 24px;
+    }
+
+    .iconsCard {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .iconsCard img,
+    .addMainSvg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .cardPage {
+        font-size: 14px;
+        height: auto;
+        padding: 24px;
+        text-align: center;
+        gap: 8px;
     }
 
     .content-qr {
         align-items: start;
     }
 
-    .pages button,
-    .addPage button {
-        font-size: 16px;
-        height: 44px;
-        padding: 24px;
+    .content-qr h2 {
+        font-size: 18px;
+        text-align: start;
     }
 
-    .iconsCard img,
-    .addMainSvg {
-        width: 20px;
-        height: 20px;
-    }
-
-    .cardPage {
-        flex-direction: column;
-        height: auto;
-        gap: 8px;
-        padding: 24px;
+    .content-qr p {
+        font-size: 12px;
+        text-align: start;
     }
 
     .login {
@@ -881,19 +916,24 @@
     }
 
     .customPage {
-        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('./assets/bg1.png');
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('./assets/bg1.png');
         background-position: center;
         padding: 0;
     }
 
     .contentImagesPageTop {
-        gap: 8px;
+        gap: 16px;
+        height: 40%;
+    }
+
+    .contentImagesPageBot {
+        height: 40%;
     }
 
     .SlidePageBot {
-        font-size: 16px;
+        font-size: 15px;
         width: 100%;
-        padding: 0 3em;
+        padding: 0 2em;
         height: fit-content;
     }
 
@@ -901,11 +941,18 @@
         font-size: 28px;
         width: 100%;
         height: 70%;
+        justify-content: center;
+        gap: 16px;
         padding: 0 0 1em 0;
     }
 
     .imgPageTeste {
         width: 48%;
+        
+    }
+
+    .image-main {
+        border-radius: 50px;
     }
 
     .swiper {
@@ -915,9 +962,9 @@
     }
 
     .content-slide {
-        justify-content: space-around;
+        justify-content: center;
         display: flex;
-        gap: 2em;
+        gap: 16px;
         flex-direction: column;
         height: 100%;
     }
@@ -945,6 +992,7 @@
 
     .pages {
         padding: 0;
+        gap: 24px;
     }
 
     .addPage p,
@@ -953,7 +1001,8 @@
     }
 
     .dashboard {
-        padding: 1em;
+        gap: 24px;
+        padding: 1em 1em 3em 1em;
         height: auto;
     }
 
@@ -1005,6 +1054,7 @@
     .login {
         justify-content: center;
         background-position: center;
+        padding-bottom: 75px;
     }
 
     .login article div h1 {
