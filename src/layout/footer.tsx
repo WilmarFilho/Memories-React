@@ -10,13 +10,13 @@ export default function Footer() {
 
                 <div className="col-12 col-md-4 col-lg-4 d-flex content-Logo-Footer">
                     <div className='footerWrapper'>
-                        <a href='https://seudrink.framer.website'><h4>Memories</h4></a>
+                        <a href='https://memorias.framer.website'><h4>Memories</h4></a>
                     </div>
                     <div className='wrapperSobre col-11'>
                         <p className='bio'>Transforme momentos especiais em lembranças eternas.</p>
                         <div className="iconsFooter">
-                            <img src={iconWpp} />
-                            <img src={iconInsta} />
+                            <a href='https://www.instagram.com/wilmar.wf/'><img src={iconWpp} /></a>
+                            <a href='https://www.instagram.com/wilmar.wf/'><img src={iconInsta} /></a>
                             <div></div>
                         </div>
                     </div>

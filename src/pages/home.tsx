@@ -95,9 +95,15 @@ export default function Home() {
                     <div className='cardPages'>
 
                         {paginas ? paginas.map((pagina, index) => (
-                            <div className='cardPage' key={pagina.id}>
-                                <span>Página #{index + 1}</span>
-                                <span>{pagina.descricao.slice(0, 25)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
+                            <div className='cardPage' key={pagina.id} >
+                                <div className='cardPages' onClick={() => {
+                                    // redirecionar para rota de edição com userHash e pageId
+                                    navigate(`/nova-pagina/${user?.hash}/${pagina.id}`);
+                                }} >
+                                    <span>Página #{index + 1}</span>
+                                    <span>{pagina.descricao.slice(0, 25)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
+                                </div>
+
 
                                 <div className='iconsCard'>
                                     <img

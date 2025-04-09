@@ -57,7 +57,13 @@ export default function Login() {
           <p>E começe a criar agora</p>
         </div>
 
-        <div className='inputs'>
+        <form
+          className="inputs"
+          onSubmit={(e) => {
+            e.preventDefault(); // evita o recarregamento da página
+            autenticarUsuario(); // chama sua função de login
+          }}
+        >
 
           <div className='contentInput'>
             <label>Digite seu email :</label>
@@ -81,7 +87,7 @@ export default function Login() {
             <button onClick={autenticarUsuario}>ENTRAR</button>
           </div>
           <p className='rodapeLogin'>Não tem uma conta? <span onClick={RetornaRegistro}>Crie Agora</span></p>
-        </div>
+        </form>
 
       </article>
     </section>

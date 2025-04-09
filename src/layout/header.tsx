@@ -8,20 +8,22 @@ export default function Header() {
 
 
     const retornaHome = () => {
-        navigate("/");
+        navigate("/dashboard");
     }
+
+    const showLayout = (
+        location.pathname.startsWith('/nova-pagina')
+    );
 
     return (
         <header className="d-flex">
 
             <div className="col-4 content-Logo">
-                <a href='https://memorias.framer.website'><h2>Memories</h2></a>
+                <a href='/dashboard'><h2>Memories</h2></a>
             </div>
 
             <div className="col-8 content-NavHeader ">
-                {location.pathname === '/resultado' ? (
-                    <button onClick={retornaHome}>Voltar</button>
-                ) : null}
+                {showLayout && <button onClick={retornaHome}>Voltar</button>}
             </div>
 
         </header>

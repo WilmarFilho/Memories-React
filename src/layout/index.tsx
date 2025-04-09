@@ -11,20 +11,20 @@ export default function Layout() {
 
 
     const location = useLocation();
+    const showLayout = (
+        location.pathname.startsWith('/nova-pagina') ||
+        location.pathname === '/dashboard'
+    );
 
     return (
         <div>
-            {(location.pathname === '/nova-pagina' || location.pathname === '/dashboard') && (
-                <Header></Header>
-            )}
+            {showLayout && <Header />}
 
             <main>
-                <Outlet /> {/* Aqui as páginas serão renderizadas */}
+                <Outlet /> 
             </main>
-            {(location.pathname === '/nova-pagina' || location.pathname === '/dashboard') && (
-                <Footer />
-            )}
 
+            {showLayout && <Footer />}
 
         </div>
     );
