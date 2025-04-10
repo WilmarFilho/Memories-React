@@ -1,13 +1,13 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { paginasState, userState } from '../recoil/atoms';
 
-import addMain from './assets/addMainPage.svg';
+import usePaginasUsuarios from '../recoil/hooks/usePaginasUsuarios';
+import useRecuperaUser from '../recoil/hooks/useRecuperaUser';
+
 import './assets/index.css';
 
-
-import api from '../services/api';
 import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
 import CardPageList from '../components/CardPage/index';
 import ButtonMain from '../components/Buttons';
@@ -17,26 +17,18 @@ import CardQr from '../components/CardQr';
 export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
-
-  const [user, setUser] = useRecoilState(userState);
-  const [paginas, setPaginas] = useRecoilState(paginasState);
+  const user = useRecoilValue(userState);
+  const paginas = useRecoilValue(paginasState);
   const feedback = location.state?.feedback;
   const [modalMessage, setModalMessage] = useState('');
 
-  useEffect(() => {
-    api.get('/user')
-      .then((response) => setUser(response.data))
-      .catch(() => console.log('Erro'));
-  }, []);
+  usePaginasUsuarios()
 
-  useEffect(() => {
-    if (user) {
-      api.get(`/pages/${user.hash}`).then((res) => setPaginas(res.data));
-    }
-  }, [user]);
+  useRecuperaUser()
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    
     if (feedback === "criado") {
       setModalMessage("Página criada com sucesso!");
       navigate(location.pathname, { replace: true });
