@@ -6,14 +6,15 @@ import PrivateRoute from './PrivateRoute';
 import Home from './pages/home';
 import CustomPage from './pages/customPage';
 import Newpage from './pages/newPage';
+import { RecoilRoot } from 'recoil';
 
 
 //const clientId = "107956742788-25vj17m0r48ao74o7n8b6ap82vhulnoi.apps.googleusercontent.com";
 
 function App() {
   return (
-    
-      <Router>
+    <RecoilRoot>
+       <Router>
         <Routes>
 
 
@@ -45,8 +46,9 @@ function App() {
           </Route>
 
         </Routes>
-      </Router>
-   
+       </Router>
+    </RecoilRoot>
+
   );
 }
 

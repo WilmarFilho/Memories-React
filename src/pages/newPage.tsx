@@ -1,28 +1,36 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import upload from './assets/upload.svg';
+import { useEffect } from 'react';
+import { useRecoilState } from 'recoil';
+import {
+    imagesState,
+    filesState,
+    descricaoState,
+    errorState,
+    fieldErrorsState
+} from '../recoil/atoms';
 
+import upload from './assets/upload.svg';
 import addMain from './assets/addMainPage.svg';
 import './index.css';
 
 import api from '../services/api';
-
 import Page from '../types/page';
 
-
 export default function Newpage() {
-
     const navigate = useNavigate();
-
     const { userHash, pageId } = useParams<{ userHash: string; pageId: string }>();
-    const [images, setImages] = useState<(string | null)[]>([null, null, null]);
-    const [files, setFiles] = useState<(File | null)[]>([null, null, null]);
-    const [descricao, setDescricao] = useState('');
-    const [error, setErro] = useState('')
-    const [fieldErrors, setFieldErrors] = useState<{ [key: string]: string }>({});
+
+    const [images, setImages] = useRecoilState(imagesState);
+    const [files, setFiles] = useRecoilState(filesState);
+    const [descricao, setDescricao] = useRecoilState(descricaoState);
+    const [error, setErro] = useRecoilState(errorState);
+    const [fieldErrors, setFieldErrors] = useRecoilState(fieldErrorsState);
+
+    const MAX_LENGTH = 200;
 
     useEffect(() => {
         if (userHash && pageId) {
+            // Caso esteja editando uma página, buscar os dados
             api.get(`/pages/${userHash}`).then((res) => {
                 const paginas = res.data;
                 const pagina = paginas.find((p: Page) => p.id === Number(pageId));
@@ -33,13 +41,29 @@ export default function Newpage() {
                         `https://apimemories.celleta.com/${pagina.img_02}`,
                         `https://apimemories.celleta.com/${pagina.img_03}`,
                     ]);
+                    setFiles([null, null, null]); // Garante que os arquivos serão enviados apenas se forem trocados
                 }
             });
+        } else {
+            // Caso esteja criando nova página, limpar os dados anteriores
+            setDescricao('');
+            setImages([null, null, null]);
+            setFiles([null, null, null]);
+            setErro('');
+            setFieldErrors({});
         }
-
     }, [userHash, pageId]);
 
-    const MAX_LENGTH = 200;
+    useEffect(() => {
+        if (error || Object.keys(fieldErrors).length > 0) {
+            const timer = setTimeout(() => {
+                setErro('');
+                setFieldErrors({});
+            }, 3000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error, fieldErrors]);
 
     function traduzirMensagem(mensagem: string): string {
         const traducoes: { [key: string]: string } = {
@@ -58,7 +82,7 @@ export default function Newpage() {
             "The img 01 field is required.": "A imagem 1 é obrigatória.",
             "The img 02 field is required.": "A imagem 2 é obrigatória.",
             "The img 03 field is required.": "A imagem 3 é obrigatória.",
-        }
+        };
         return traducoes[mensagem] || mensagem;
     }
 
@@ -77,72 +101,38 @@ export default function Newpage() {
 
     const handleSubmit = async () => {
         const formData = new FormData();
-
-
-
         formData.append('descricao', descricao);
 
-        // Apenas adiciona os arquivos que foram alterados
         if (files[0]) formData.append('img_01', files[0]);
         if (files[1]) formData.append('img_02', files[1]);
         if (files[2]) formData.append('img_03', files[2]);
 
         try {
             if (pageId) {
-                // Edição
                 const response = await api.post(`/page/${pageId}`, formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                console.log("Página editada com sucesso:", response.data);
-                navigate("/dashboard", {
-                    state: {
-                        feedback: "editado",
-                    },
-                });
+                navigate("/dashboard", { state: { feedback: "editado" } });
             } else {
-                // Novo
-
-
                 const response = await api.post('/page/novo', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
+                    headers: { 'Content-Type': 'multipart/form-data' },
                 });
-                console.log("Página adicionada com sucesso:", response.data);
-                navigate("/dashboard", {
-                    state: {
-                        feedback: "criado",
-                    },
-                });
+                navigate("/dashboard", { state: { feedback: "criado" } });
             }
         } catch (err: any) {
             window.scrollTo(0, 0);
-            console.error("Erro ao enviar a página:", err);
-
-            // Erro geral
             if (err.response?.data?.message) {
                 setErro(err.response.data.message);
             }
-
-            // Erros de campos específicos
             const campos = err.response?.data?.errors;
             const fieldMessages: { [key: string]: string } = {};
-
-
             if (campos) {
-
                 Object.keys(campos).forEach((campo) => {
-
                     if (Array.isArray(campos[campo])) {
-
                         fieldMessages[campo] = traduzirMensagem(campos[campo][0]);
-
                     }
                 });
             }
-
             setFieldErrors(fieldMessages);
         }
     };
@@ -153,12 +143,10 @@ export default function Newpage() {
                 {[0, 1, 2].map((i) => (
                     <div key={i}>
                         <label>Carregue sua {i + 1}ª foto para a página</label>
-
                         <label htmlFor={`fileInput-${i}`} className="customFileUpload">
-                            <p style={{ marginTop: "8px", textAlign: "start" }}>{images[i] ? 'Imagem carregada' : 'png | jpeg'}</p>
+                            <p>{images[i] ? 'Imagem carregada' : 'png | jpeg'}</p>
                             <img src={upload} />
                         </label>
-
                         <input
                             type="file"
                             id={`fileInput-${i}`}
@@ -166,14 +154,11 @@ export default function Newpage() {
                             accept="image/*"
                             style={{ display: 'none' }}
                         />
-
-                        {/* Feedback de erro da imagem */}
                         {fieldErrors[`img_0${i + 1}`] && (
-                            <p style={{ color: 'red', marginTop: '4px' }}>{fieldErrors[`img_0${i + 1}`]}</p>
+                            <p style={{ color: 'red' }}>{fieldErrors[`img_0${i + 1}`]}</p>
                         )}
                     </div>
                 ))}
-
                 <div>
                     <label>Digite a descrição para sua página</label>
                     <textarea
@@ -182,16 +167,13 @@ export default function Newpage() {
                         value={descricao}
                         onChange={(e) => setDescricao(e.target.value)}
                     />
-                    <div style={{ fontSize: '12px', color: descricao.length >= MAX_LENGTH ? 'red' : '#666', marginTop: '4px' }}>
+                    <div style={{ fontSize: '12px', color: descricao.length >= MAX_LENGTH ? 'red' : '#666' }}>
                         {MAX_LENGTH - descricao.length} caracteres restantes
                     </div>
                     {fieldErrors[`descricao`] && (
-                        <p style={{ color: 'red', marginTop: '4px' }}>{fieldErrors[`descricao`]}</p>
+                        <p style={{ color: 'red' }}>{fieldErrors[`descricao`]}</p>
                     )}
                 </div>
-
-
-
                 <div className="previewImages">
                     {images.map((img, index) => (
                         img && (
@@ -203,10 +185,8 @@ export default function Newpage() {
                                     onClick={() => {
                                         const updatedImages = [...images];
                                         const updatedFiles = [...files];
-
                                         updatedImages[index] = null;
                                         updatedFiles[index] = null;
-
                                         setImages(updatedImages);
                                         setFiles(updatedFiles);
                                     }}
@@ -217,7 +197,6 @@ export default function Newpage() {
                         )
                     ))}
                 </div>
-
                 <button onClick={handleSubmit}>
                     {pageId ? 'Salvar Alterações' : 'Adicionar Página'}
                     <img className='addMainSvg' src={addMain} />
