@@ -1,6 +1,12 @@
 import { atom } from 'recoil';
 import Page from '../types/page';
 import User from '../types/user';
+import AuthState from '../types/auth'
+
+const savedAuth = localStorage.getItem('auth');
+const initialAuthState: AuthState = savedAuth
+  ? JSON.parse(savedAuth)
+  : { token: '', authenticated: false };
 
 export const paginasState = atom<Page[]>({
     key: 'paginasState',
@@ -11,6 +17,11 @@ export const userState = atom<User | null>({
     key: 'userState',
     default: null,
 })
+
+export const authState = atom<AuthState>({
+    key: 'authState',
+    default: initialAuthState,
+  });
 
 export const imagesState = atom<(string | null)[]>({
     key: 'imagesState',

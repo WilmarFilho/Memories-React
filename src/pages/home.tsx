@@ -27,8 +27,9 @@ export default function Home() {
   useRecuperaUser()
 
   useEffect(() => {
-    window.scrollTo(0, 0);
     
+    window.scrollTo(0, 0);
+
     if (feedback === "criado") {
       setModalMessage("Página criada com sucesso!");
       navigate(location.pathname, { replace: true });
@@ -37,10 +38,6 @@ export default function Home() {
       navigate(location.pathname, { replace: true });
     }
   }, [feedback]);
-
-  const RetornaPageAdd = () => {
-    navigate("/nova-pagina");
-  };
 
   return (
     <div className='WrapperDashboard'>
@@ -53,7 +50,9 @@ export default function Home() {
 
           <CardPageList />
 
-          <ButtonMain onClick={RetornaPageAdd} />
+          <ButtonMain onClick={() => {
+            navigate("/nova-pagina");
+          }} />
 
         </div>
 
@@ -62,7 +61,7 @@ export default function Home() {
         ) : (
           <NotFound />
         )}
-        
+
       </section>
     </div>
   );

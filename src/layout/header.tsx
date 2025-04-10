@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import useLogout from "../recoil/hooks/useLogout";
 
 export default function Header() {
 
@@ -10,8 +11,15 @@ export default function Header() {
         navigate("/dashboard");
     }
 
-    const showLayout = (
+    const logout = useLogout();
+       
+
+    const showVoltarLayout = (
         location.pathname.startsWith('/nova-pagina')
+    );
+
+    const showSairLayout = (
+        location.pathname === '/dashboard'
     );
 
     return (
@@ -22,7 +30,8 @@ export default function Header() {
             </div>
 
             <div className="col-8 content-NavHeader ">
-                {showLayout && <button onClick={retornaHome}>Voltar</button>}
+                {showVoltarLayout && <button onClick={retornaHome}>Voltar</button>}
+                {showSairLayout && <button onClick={logout}>Sair</button>}
             </div>
 
         </header>

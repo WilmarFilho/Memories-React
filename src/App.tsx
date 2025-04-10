@@ -39,9 +39,9 @@ function App() {
             />
 
 
-            <Route path="/register" element={<Register />} />
-            <Route path='/login' element={<Login />} />
-            <Route path="/pagina/:hash" element={<CustomPage />} />
+            <Route path="register" element={<Register />} />
+            <Route path='login' element={<Login />} />
+            <Route path="pagina/:hash" element={<CustomPage />} />
 
           </Route>
 

@@ -1,9 +1,8 @@
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useRecoilState } from 'recoil';
-
-import api from '../services/api';
+import { useRecoilValue } from 'recoil';
+import usePaginasCompartilhadas from '../recoil/hooks/usePaginasCompartilhadas';
 import { paginasState } from '../recoil/atoms';
+import { resetAnimations } from '../utils/animation';
+import {renderImage} from '../utils/render'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -20,38 +19,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export default function CustomPage() {
-  const { hash } = useParams<{ hash: string }>();
-  const [paginas, setPaginas] = useRecoilState(paginasState);
+  
+  const paginas = useRecoilValue(paginasState);
 
-  useEffect(() => {
-    if (hash) {
-      api.get(`/pages/${hash}`)
-        .then((response) => setPaginas(response.data))
-        .catch((error) => console.error('Erro ao buscar páginas:', error));
-    }
-  }, [hash, setPaginas]);
-
-  const resetAnimations = () => {
-    const animatedElements = document.querySelectorAll(
-      '.slide-in-top, .slide-in-top-2, .slide-in-top-3'
-    );
-    animatedElements.forEach((el) => {
-      el.classList.remove('slide-in-top', 'slide-in-top-2', 'slide-in-top-3');
-      void el.clientHeight;
-      el.classList.add('slide-in-top');
-    });
-  };
-
-  const renderImage = (src?: string, animationClass?: string) => {
-    if (!src) return null;
-    const fullSrc = `https://apimemories.celleta.com/${src}`;
-    return (
-      <div className={`imgPageTeste ${animationClass}`}>
-        <img className='image-blur-bg' src={fullSrc} alt='' />
-        <img className='image-main' src={fullSrc} alt='' />
-      </div>
-    );
-  };
+  usePaginasCompartilhadas();
 
   if (!paginas || paginas.length === 0) return null;
 

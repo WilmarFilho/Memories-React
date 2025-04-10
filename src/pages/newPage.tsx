@@ -141,7 +141,7 @@ export default function Newpage() {
         <div className="WrapperDashboard">
             <div className="addPage">
                 {[0, 1, 2].map((i) => (
-                    <InputImage index={i} fieldErrors={fieldErrors} images={images} handleFileChange={handleFileChange} />
+                    <InputImage key={i} index={i} fieldErrors={fieldErrors} images={images} handleFileChange={handleFileChange} />
                 ))}
 
                 <InputDescricao descricao={descricao} setDescricao={setDescricao} fieldErrors={fieldErrors} />

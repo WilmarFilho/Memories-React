@@ -4,24 +4,35 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import api from '../services/api';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { userState } from '../recoil/atoms';
+import { authState } from '../recoil/atoms';
+import CookieConsent from '../components/Cookies/index';
 
 
 
 
 export default function Login() {
+  
+  const setAuth = useSetRecoilState(authState);
+  const auth = useRecoilValue(authState);
+
+
+  useEffect(() => {
+    if(auth.authenticated)
+      navigate('/dashboard')
+  }, [])
 
   const navigate = useNavigate();
+
+
+  
 
   const RetornaRegistro = () => {
     navigate("/register");
   }
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      navigate('/dashboard');
-    }
-  }, []);
+
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,9 +48,18 @@ export default function Login() {
       // Supondo que a API retorne um token ou user
       const { access_token } = resposta.data;
 
-      // Salva o token no localStorage
+      const authData = {
+        token: access_token,
+        authenticated: true,
+      };
+
+      // Armazena o token para os interceptors usarem
       localStorage.setItem('token', access_token);
-      navigate('/dashboard'); // redireciona após login
+      localStorage.setItem('auth', JSON.stringify(authData));
+
+      // Salva os dados do usuário no Recoil
+      setAuth(authData);
+      navigate('/dashboard');
 
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
@@ -97,6 +117,7 @@ export default function Login() {
         </form>
 
       </article>
+      <CookieConsent />
     </section>
 
   )
