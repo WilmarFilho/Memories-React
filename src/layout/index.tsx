@@ -1,6 +1,6 @@
 import Header from './header';
 import Footer from './footer';
-import './index.css';
+import './assets/index.css';
 import { useLocation } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
 

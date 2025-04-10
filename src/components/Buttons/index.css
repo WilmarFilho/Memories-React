@@ -1,0 +1,59 @@
+.pages button,
+.addPage button {
+    background-color: #252525;
+    border-radius: 30px;
+    width: 100%;
+    font-family: Happy Monkey;
+    font-size: 24px;
+    color: white;
+    align-items: center;
+    display: flex;
+    gap: 16px;
+    padding: 20px 40px;
+    justify-content: start;
+    text-transform: uppercase;
+    outline: none;
+    border: none;
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .pages button,
+    .addPage button {
+        font-size: 18px;
+        height: 54px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .pages button,
+    .addPage button {
+        font-size: 16px;
+        height: 44px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.999px) {
+    .pages button,
+    .addPage button {
+        font-size: 16px;
+        height: 44px;
+    }
+}
+
+@media (min-width: 529px) and (max-width: 767.9px) {
+    .pages button,
+    .addPage button {
+        font-size: 14px;
+        height: 40px;
+        padding: 24px;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 528.99px) {
+    .pages button,
+    .addPage button {
+        font-size: 14px;
+        height: 40px;
+        padding: 24px;
+    }
+}

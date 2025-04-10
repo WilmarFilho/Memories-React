@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
+
 import {
     imagesState,
     filesState,
@@ -9,24 +10,23 @@ import {
     fieldErrorsState
 } from '../recoil/atoms';
 
-import upload from './assets/upload.svg';
-import addMain from './assets/addMainPage.svg';
-import './index.css';
+import './assets/index.css';
 
 import api from '../services/api';
 import Page from '../types/page';
+import ButtonMain from '../components/Buttons';
+import InputImage from '../components/InputsCustom/inputImage';
+import InputDescricao from '../components/InputsCustom/inputDescricao';
 
 export default function Newpage() {
+    
     const navigate = useNavigate();
     const { userHash, pageId } = useParams<{ userHash: string; pageId: string }>();
-
     const [images, setImages] = useRecoilState(imagesState);
     const [files, setFiles] = useRecoilState(filesState);
     const [descricao, setDescricao] = useRecoilState(descricaoState);
     const [error, setErro] = useRecoilState(errorState);
     const [fieldErrors, setFieldErrors] = useRecoilState(fieldErrorsState);
-
-    const MAX_LENGTH = 200;
 
     useEffect(() => {
         if (userHash && pageId) {
@@ -141,39 +141,11 @@ export default function Newpage() {
         <div className="WrapperDashboard">
             <div className="addPage">
                 {[0, 1, 2].map((i) => (
-                    <div key={i}>
-                        <label>Carregue sua {i + 1}ª foto para a página</label>
-                        <label htmlFor={`fileInput-${i}`} className="customFileUpload">
-                            <p>{images[i] ? 'Imagem carregada' : 'png | jpeg'}</p>
-                            <img src={upload} />
-                        </label>
-                        <input
-                            type="file"
-                            id={`fileInput-${i}`}
-                            onChange={(e) => handleFileChange(i, e)}
-                            accept="image/*"
-                            style={{ display: 'none' }}
-                        />
-                        {fieldErrors[`img_0${i + 1}`] && (
-                            <p style={{ color: 'red' }}>{fieldErrors[`img_0${i + 1}`]}</p>
-                        )}
-                    </div>
+                    <InputImage index={i} fieldErrors={fieldErrors} images={images} handleFileChange={handleFileChange} />
                 ))}
-                <div>
-                    <label>Digite a descrição para sua página</label>
-                    <textarea
-                        className='customInput'
-                        placeholder="O dia em que começamos o nosso noivado..."
-                        value={descricao}
-                        onChange={(e) => setDescricao(e.target.value)}
-                    />
-                    <div style={{ fontSize: '12px', color: descricao.length >= MAX_LENGTH ? 'red' : '#666' }}>
-                        {MAX_LENGTH - descricao.length} caracteres restantes
-                    </div>
-                    {fieldErrors[`descricao`] && (
-                        <p style={{ color: 'red' }}>{fieldErrors[`descricao`]}</p>
-                    )}
-                </div>
+
+                <InputDescricao descricao={descricao} setDescricao={setDescricao} fieldErrors={fieldErrors} />
+
                 <div className="previewImages">
                     {images.map((img, index) => (
                         img && (
@@ -197,10 +169,9 @@ export default function Newpage() {
                         )
                     ))}
                 </div>
-                <button onClick={handleSubmit}>
-                    {pageId ? 'Salvar Alterações' : 'Adicionar Página'}
-                    <img className='addMainSvg' src={addMain} />
-                </button>
+
+                <ButtonMain onClick={handleSubmit} pageId={pageId} />
+
             </div>
         </div>
     );

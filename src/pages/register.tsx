@@ -1,4 +1,4 @@
-import './index.css';
+import './assets/index.css';
 import './assets/login.webp';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';

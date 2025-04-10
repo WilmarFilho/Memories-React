@@ -4,12 +4,15 @@ import { useRecoilState } from 'recoil';
 import { paginasState, userState } from '../recoil/atoms';
 
 import addMain from './assets/addMainPage.svg';
-import './index.css';
+import './assets/index.css';
 
-import QRCodeComponent from '../services/qr';
+
 import api from '../services/api';
 import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
 import CardPageList from '../components/CardPage/index';
+import ButtonMain from '../components/Buttons';
+import NotFound from '../components/NotFound';
+import CardQr from '../components/CardQr';
 
 export default function Home() {
   const location = useLocation();
@@ -55,24 +58,19 @@ export default function Home() {
 
       <section className="dashboard row">
         <div className="col-12  col-md-9 col-lg-5 pages">
+
           <CardPageList />
-          <button onClick={RetornaPageAdd}>
-            Adicionar Página <img className='addMainSvg' src={addMain} />
-          </button>
+
+          <ButtonMain onClick={RetornaPageAdd} />
+
         </div>
 
         {paginas.length > 0 ? (
-          <div className="col-12 col-md-9 col-lg-5 content-qr">
-            <h2>Compartilhe seu qr ou link com suas memórias</h2>
-            <QRCodeComponent userHash={user?.hash} />
-          </div>
+          <CardQr userHash={user?.hash} />
         ) : (
-          <div style={{ height: '250px' }} className="col-12 col-md-9 col-lg-5 content-qr">
-            <h2 style={{ textAlign: 'center' }}>
-              Adicione sua primeira página e compartilhe seu QR ou link com suas memórias
-            </h2>
-          </div>
+          <NotFound />
         )}
+        
       </section>
     </div>
   );

@@ -1,6 +1,6 @@
 
-import iconWpp from '../pages/assets/Wpp.svg';
-import iconInsta from '../pages/assets/Insta.svg'
+import iconWpp from './assets/Wpp.svg';
+import iconInsta from './assets/Insta.svg'
 
 export default function Footer() {
     return (

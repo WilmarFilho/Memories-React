@@ -1,0 +1,43 @@
+.content-qr {
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    height: 100%;
+
+}
+
+.content-qr h2 {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-family: Happy Monkey;
+}
+
+@media (min-width: 768px) and (max-width: 991.999px) {
+    .content-qr h2 {
+        text-align: start;
+    }
+}
+
+@media (min-width: 529px) and (max-width: 767.9px) {
+    .content-qr {
+        align-items: start;
+    }
+
+    .content-qr h2 {
+        font-size: 18px;
+        text-align: start;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 528.99px) {
+    .content-qr {
+        align-items: start;
+    }
+
+    .content-qr h2 {
+        font-size: 18px;
+        text-align: start;
+    }
+}

@@ -1,9 +1,10 @@
 import { useRecoilState } from 'recoil';
 import { paginasState, userState } from '../../recoil/atoms';
-import iconEdit from '../../pages/assets/edit.svg';
+import iconEdit from './assets/edit.svg';
 import api from '../../services/api';
-import iconDelete from '../../pages/assets/delete.svg';
+import iconDelete from './assets/delete.svg';
 import { useNavigate } from 'react-router-dom';
+import './index.css'
 
 
 
