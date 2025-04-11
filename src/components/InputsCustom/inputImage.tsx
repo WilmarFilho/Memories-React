@@ -11,7 +11,7 @@ export default function InputImage({ index, images, handleFileChange, fieldError
     return (
         <div>
             <label>Carregue sua {index + 1}ª foto para a página</label>
-            <label htmlFor={`fileInput-${index}`} className="customFileUpload">
+            <label  tabIndex={0} htmlFor={`fileInput-${index}`} className="customFileUpload">
                 <p>{images[index] ? 'Imagem carregada' : 'png | jpeg'}</p>
                 <img src={upload} alt="Ícone de upload" />
             </label>

@@ -16,6 +16,11 @@
     border: none;
 }
 
+button:focus-visible {
+    outline: 3px solid rgba(255, 0, 0, 0.342) !important;
+    transition: 0.1s;
+}
+
 @media (min-width: 1201px) and (max-width: 1400px) {
     .pages button,
     .addPage button {

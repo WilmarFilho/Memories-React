@@ -38,7 +38,7 @@
 
 @media (min-width: 100px) and (max-width: 728.99px) {
   .cookie-consent {
-    font-size: 10px;
+    font-size: 12px;
     gap: 2em;
   }
 }

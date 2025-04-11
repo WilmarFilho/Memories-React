@@ -17,6 +17,10 @@ body {
     background-color: #D6D6D6;
 }
 
+input:focus{
+    outline: 1px solid #ED3541 !important;
+}
+
 header {
     padding: 12px var(--padding-global);
     background-color: #ed354193;

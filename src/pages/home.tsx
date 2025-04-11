@@ -13,7 +13,7 @@ import useFeedback from '../recoil/hooks/useFeedback';
 
 // Componentes
 import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
-import CardPageList from '../components/CardPage';
+import CardPageList from '../components/CardComponents/CardPage';
 import ButtonMain from '../components/Buttons';
 import NotFound from '../components/NotFound';
 import CardQr from '../components/CardQr';

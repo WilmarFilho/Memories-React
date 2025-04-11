@@ -68,7 +68,7 @@ export default function Login() {
             <button type='submit'>ENTRAR</button>
           </div>
           <p className='rodapeLogin'>
-            Não tem uma conta? <span onClick={goToRegister}>Crie Agora</span>
+            Não tem uma conta? <span tabIndex={0} onClick={goToRegister}>Crie Agora</span>
           </p>
         </form>
       </article>

@@ -35,3 +35,9 @@
 .addPage input[type="file"] {
     display: none;
 }
+
+
+.customFileUpload:focus-visible, .customInput:focus-visible {
+    outline: 2px solid #ED3541;
+    transition: 0.1s;
+}

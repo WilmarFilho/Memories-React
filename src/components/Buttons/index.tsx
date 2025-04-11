@@ -8,7 +8,7 @@ interface Props {
 
 export default function ButtonMain({onClick, pageId} : Props ) {
     return (
-        <button onClick={onClick}>
+        <button tabIndex={0} onClick={onClick}>
             {pageId ? 'Salvar Alterações' : 'Adicionar Página'}
             <img className='addMainSvg' src={addMain} />
         </button>
