@@ -1,68 +1,65 @@
 import { useRecoilState } from 'recoil';
-import { paginasState, userState } from '../../recoil/atoms';
-import iconEdit from './assets/edit.svg';
-import api from '../../services/api';
-import iconDelete from './assets/delete.svg';
 import { useNavigate } from 'react-router-dom';
-import './index.css'
 
+import { paginasState, userState } from '../../recoil/atoms';
+import api from '../../services/api';
 
+import iconEdit from './assets/edit.svg';
+import iconDelete from './assets/delete.svg';
 
+import './index.css';
 
 export default function CardPage() {
+  const [paginas, setPaginas] = useRecoilState(paginasState);
+  const [user] = useRecoilState(userState);
+  const navigate = useNavigate();
 
-    const [paginas, setPaginas] = useRecoilState(paginasState);
-    const [user] = useRecoilState(userState);
-    const navigate = useNavigate();
+  const handleDelete = async (id: number) => {
+    const confirmDelete = window.confirm('Deseja realmente deletar esta página?');
+    if (!confirmDelete) return;
 
+    try {
+      await api.delete(`/page/${id}`);
+      alert('Página deletada com sucesso!');
+      const novaLista = paginas.filter((p) => p.id !== id);
+      setPaginas(novaLista);
+    } catch (err) {
+      alert('Erro ao deletar a página.');
+      console.error(err);
+    }
+  };
 
-    return (
-        <div className='cardPages'>
+  return (
+    <div className="cardPages">
+      {paginas?.map((pagina, index) => (
+        <div className="cardPage" key={pagina.id}>
+          <div
+            className="cardPages"
+            onClick={() => navigate(`/nova-pagina/${user?.hash}/${pagina.id}`)}
+          >
+            <span>Página #{index + 1}</span>
+            <span>
+              {pagina.descricao.slice(0, 25)}
+              {pagina.descricao.length > 40 ? ' ...' : ''}
+            </span>
+          </div>
 
-            {paginas ? paginas.map((pagina, index) => (
-                <div className='cardPage' key={pagina.id} >
-                    <div className='cardPages' onClick={() => {
-                        // redirecionar para rota de edição com userHash e pageId
-                        navigate(`/nova-pagina/${user?.hash}/${pagina.id}`);
-                    }} >
-                        <span>Página #{index + 1}</span>
-                        <span>{pagina.descricao.slice(0, 25)}{pagina.descricao.length > 40 ? '  ...' : ''}</span>
-                    </div>
-
-
-                    <div className='iconsCard'>
-                        <img
-                            src={iconEdit}
-                            style={{ cursor: 'pointer' }}
-                            onClick={() => {
-                                // redirecionar para rota de edição com userHash e pageId
-                                navigate(`/nova-pagina/${user?.hash}/${pagina.id}`);
-                            }}
-                        />
-                        <img
-                            src={iconDelete}
-                            style={{ cursor: 'pointer' }}
-                            onClick={async () => {
-                                const confirm = window.confirm('Deseja realmente deletar esta página?');
-                                if (!confirm) return;
-
-                                try {
-                                    await api.delete(`/page/${pagina.id}`);
-                                    alert('Página deletada com sucesso!');
-                                    // Remove do estado local para atualizar a lista sem recarregar
-                                    const novaLista = paginas.filter((p) => p.id !== pagina.id);
-                                    setPaginas(novaLista);
-                                } catch (err) {
-                                    alert('Erro ao deletar a página.');
-                                    console.error(err);
-                                }
-                            }}
-                        />
-                    </div>
-                </div>
-            )) : null}
-
-
+          <div className="iconsCard">
+            <img
+              src={iconEdit}
+              alt="Editar"
+              style={{ cursor: 'pointer' }}
+              onClick={() => navigate(`/nova-pagina/${user?.hash}/${pagina.id}`)}
+            />
+            <img
+              src={iconDelete}
+              alt="Excluir"
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleDelete(pagina.id)}
+            />
+          </div>
         </div>
-    )
+      ))}
+    </div>
+  );
 }

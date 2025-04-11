@@ -1,33 +1,32 @@
+import { useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { Outlet } from 'react-router-dom';
+//Components
 import Header from './header';
 import Footer from './footer';
+//Estilo
 import './assets/index.css';
-import { useLocation } from "react-router-dom";
-import { useRecoilValue } from 'recoil';
+//Estados
 import { authState } from '../recoil/atoms';
-import { Outlet } from 'react-router-dom';
-
-
 
 export default function Layout() {
+  const auth = useRecoilValue(authState);
+  const location = useLocation();
 
-    const auth = useRecoilValue(authState)
+  const layoutPaths = ['/nova-pagina', '/dashboard'];
+  const showLayout =
+    auth.authenticated &&
+    layoutPaths.some((path) => location.pathname.startsWith(path));
 
-    const location = useLocation();
+  return (
+    <div>
+      {showLayout && <Header />}
 
-    const layoutPaths = ['/nova-pagina', '/dashboard'];
-    const showLayout = auth.authenticated && layoutPaths.some(path => location.pathname.startsWith(path));
+      <main>
+        <Outlet />
+      </main>
 
-    return (
-        <div>
-            {showLayout && <Header />}
-
-            <main>
-                <Outlet /> 
-            </main>
-
-            {showLayout && <Footer />}
-
-        </div>
-    );
-};
-
+      {showLayout && <Footer />}
+    </div>
+  );
+}
