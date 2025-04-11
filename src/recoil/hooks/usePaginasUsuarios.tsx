@@ -1,4 +1,3 @@
-import Page from '../../types/page';
 import { useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { userState, paginasState } from '../atoms'
@@ -7,7 +6,6 @@ import api from '../../services/api';
 export default function usePaginasUsuarios() {
     const user = useRecoilValue(userState)
     const setPaginas = useSetRecoilState(paginasState)
-    const paginas = useRecoilValue(paginasState);
 
     useEffect(() => {
         if (user) {

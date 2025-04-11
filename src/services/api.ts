@@ -1,5 +1,4 @@
 import axios from 'axios';
-import AuthState from '../types/auth';
 
 const api = axios.create({
     baseURL: 'https://apimemories.celleta.com/api',
