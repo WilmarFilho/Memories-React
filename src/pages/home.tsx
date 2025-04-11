@@ -1,18 +1,26 @@
+// Libs
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
+import { useEffect } from 'react';
+
+// Estados globais
 import { paginasState, userState } from '../recoil/atoms';
 
+// Hooks personalizados
 import usePaginasUsuarios from '../recoil/hooks/usePaginasUsuarios';
 import useRecuperaUser from '../recoil/hooks/useRecuperaUser';
+import useFeedback from '../recoil/hooks/useFeedback';
 
-import './assets/index.css';
-
+// Componentes
 import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
-import CardPageList from '../components/CardPage/index';
+import CardPageList from '../components/CardPage';
 import ButtonMain from '../components/Buttons';
 import NotFound from '../components/NotFound';
 import CardQr from '../components/CardQr';
-import useFeedback from '../recoil/hooks/useFeedback';
+
+// Estilos
+import './assets/index.css';
+
 
 export default function Home() {
   const location = useLocation();
@@ -22,11 +30,12 @@ export default function Home() {
 
   const feedback = location.state?.feedback;
 
-  const {modalMessage, setModalMessage} = useFeedback(feedback);
+  const { modalMessage, setModalMessage } = useFeedback(feedback);
 
-  usePaginasUsuarios()
 
-  useRecuperaUser()
+  useRecuperaUser();
+  usePaginasUsuarios();
+
 
   return (
     <div className='WrapperDashboard'>

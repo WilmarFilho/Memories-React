@@ -4,8 +4,8 @@ export function renderImage(src?: string, animationClass?: string) {
   const fullSrc = `https://apimemories.celleta.com/${src}`;
   return (
     <div className={`imgPageTeste ${animationClass}`}>
-      <img className='image-blur-bg' src={fullSrc} alt='' />
-      <img className='image-main' src={fullSrc} alt='' />
+      <img className='image-blur-bg' src={fullSrc} alt='Imagem de Fundo com Blur' />
+      <img className='image-main' src={fullSrc} alt='Imagem do Momento Especial' />
     </div>
   );
 }

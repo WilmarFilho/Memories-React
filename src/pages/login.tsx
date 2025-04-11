@@ -1,6 +1,13 @@
+//Estilos
 import './assets/index.css';
+
+//Assets
 import './assets/login.webp';
+
+//Components
 import CookieConsent from '../components/Cookies/index';
+
+//Hooks
 import useLogin from '../recoil/hooks/useLogin';
 
 export default function Login() {

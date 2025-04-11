@@ -1,5 +1,10 @@
+//Estilos
 import './assets/index.css';
+
+//Assets
 import './assets/login.webp';
+
+//Hooks
 import useRegister from '../recoil/hooks/useRegister';
 
 export default function Register() {

@@ -1,9 +1,6 @@
+// Bibliotecas e módulos
+import { Navigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import usePaginasCompartilhadas from '../recoil/hooks/usePaginasCompartilhadas';
-import { paginasState } from '../recoil/atoms';
-import { resetAnimations } from '../utils/animation';
-import { renderImage } from '../utils/render'
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
   Navigation,
@@ -13,18 +10,24 @@ import {
   Mousewheel,
 } from 'swiper/modules';
 
+// Estado global e hooks
+import usePaginasCompartilhadas from '../recoil/hooks/usePaginasCompartilhadas';
+import { paginasState } from '../recoil/atoms';
+
+// Utilitários
+import { resetAnimations } from '../utils/animation';
+import { renderImage } from '../utils/render';
+
+// Estilos do Swiper
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-import { Navigate } from 'react-router-dom';
-
 
 export default function CustomPage() {
 
   const loading = usePaginasCompartilhadas();
-
   const paginas = useRecoilValue(paginasState);
 
   if (loading) return null;
@@ -49,7 +52,7 @@ export default function CustomPage() {
         onSlideChange={resetAnimations}
       >
         {paginas.map((pagina, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={pagina.id}>
             <div className='content-slide'>
               <div className='SlidePageBot slide-in-top-3'>
                 <p>{pagina.descricao}</p>

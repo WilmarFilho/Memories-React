@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 
+// Estado global
 import {
     imagesState,
     filesState,
@@ -8,19 +9,21 @@ import {
     fieldErrorsState
 } from '../recoil/atoms';
 
-import './assets/index.css';
+// Hooks
+import useEditaOuAdiciona from '../recoil/hooks/useEditaOuAdiciona';
+import useAdicionaPage from '../recoil/hooks/useAdicionaPage';
 
+// Componentes
 import ButtonMain from '../components/Buttons';
 import InputImage from '../components/InputsCustom/inputImage';
 import InputDescricao from '../components/InputsCustom/inputDescricao';
 
-import useEditaOuAdiciona from '../recoil/hooks/useEditaOuAdiciona';
-import useAdicionaPage from '../recoil/hooks/useAdicionaPage';
+// Estilos
+import './assets/index.css';
 
 export default function Newpage() {
-    
-  
     const { pageId } = useParams<{ userHash: string; pageId: string }>();
+
     const [images, setImages] = useRecoilState(imagesState);
     const [files, setFiles] = useRecoilState(filesState);
     const [descricao, setDescricao] = useRecoilState(descricaoState);
@@ -28,9 +31,17 @@ export default function Newpage() {
 
     useEditaOuAdiciona()
 
-    const {handleFileChange, handleSubmit}  = useAdicionaPage();
+    const { handleFileChange, handleSubmit } = useAdicionaPage();
 
-    
+    const removeImage = (index : number) => {
+        const updatedImages = [...images];
+        const updatedFiles = [...files];
+        updatedImages[index] = null;
+        updatedFiles[index] = null;
+        setImages(updatedImages);
+        setFiles(updatedFiles);
+    }
+
     return (
         <div className="WrapperDashboard">
             <div className="addPage">
@@ -48,14 +59,7 @@ export default function Newpage() {
                                 <button
                                     type="button"
                                     className="removeImageBtn"
-                                    onClick={() => {
-                                        const updatedImages = [...images];
-                                        const updatedFiles = [...files];
-                                        updatedImages[index] = null;
-                                        updatedFiles[index] = null;
-                                        setImages(updatedImages);
-                                        setFiles(updatedFiles);
-                                    }}
+                                    onClick={() => removeImage(index)}
                                 >
                                     ✖
                                 </button>
