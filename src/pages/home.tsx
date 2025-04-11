@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { paginasState, userState } from '../recoil/atoms';
 
@@ -13,31 +12,21 @@ import CardPageList from '../components/CardPage/index';
 import ButtonMain from '../components/Buttons';
 import NotFound from '../components/NotFound';
 import CardQr from '../components/CardQr';
+import useFeedback from '../recoil/hooks/useFeedback';
 
 export default function Home() {
   const location = useLocation();
   const navigate = useNavigate();
   const user = useRecoilValue(userState);
   const paginas = useRecoilValue(paginasState);
+
   const feedback = location.state?.feedback;
-  const [modalMessage, setModalMessage] = useState('');
+
+  const {modalMessage, setModalMessage} = useFeedback(feedback);
 
   usePaginasUsuarios()
 
   useRecuperaUser()
-
-  useEffect(() => {
-    
-    window.scrollTo(0, 0);
-
-    if (feedback === "criado") {
-      setModalMessage("Página criada com sucesso!");
-      navigate(location.pathname, { replace: true });
-    } else if (feedback === "editado") {
-      setModalMessage("Página editada com sucesso!");
-      navigate(location.pathname, { replace: true });
-    }
-  }, [feedback]);
 
   return (
     <div className='WrapperDashboard'>

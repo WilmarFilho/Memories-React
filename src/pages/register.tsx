@@ -1,79 +1,10 @@
 import './assets/index.css';
 import './assets/login.webp';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import axios from 'axios';
-import api from '../services/api';
+import useRegister from '../recoil/hooks/useRegister';
 
 export default function Register() {
-    const navigate = useNavigate();
 
-    const RetornaLogin = () => {
-        navigate("/login");
-    };
-
-    const [nome, setNome] = useState('');
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [erro, setErro] = useState('');
-    const [loading, setLoading] = useState(false);
-
-    const validarCampos = () => {
-        if (!nome || !email || !senha) {
-            setErro("Preencha todos os campos.");
-            return false;
-        }
-
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            setErro("Email inválido.");
-            return false;
-        }
-
-        if (senha.length < 8) {
-            setErro("A senha deve conter pelo menos 8 caracteres.");
-            return false;
-        }
-
-        const temMaiuscula = /[A-Z]/.test(senha);
-        if (!temMaiuscula) {
-            setErro("A senha deve conter pelo menos uma letra maiúscula.");
-            return false;
-        }
-
-        setErro('');
-        return true;
-    };
-
-
-    const registrarUsuario = async () => {
-        if (!validarCampos()) return;
-
-        try {
-            setLoading(true);
-
-            const resposta = await api.post('/register', {
-                name: nome,
-                email: email,
-                password: senha,
-            });
-
-            // Se quiser, já salva o token e redireciona direto:
-            const { access_token } = resposta.data;
-            localStorage.setItem('token', access_token);
-
-            navigate('/dashboard'); // ou 'login' se preferir
-        } catch (error: any) {
-            if (axios.isAxiosError(error)) {
-                const mensagem = error.response?.data?.mensagem || "Erro ao registrar. Tente novamente.";
-                setErro(mensagem);
-            } else {
-                setErro("Erro inesperado. Verifique sua conexão.");
-            }
-        } finally {
-            setLoading(false);
-        }
-    };
+    const { nome, email, senha, erro, RetornaLogin, registrarUsuario, setSenha, setEmail, setNome } = useRegister()
 
     return (
         <section className="login">
@@ -124,8 +55,8 @@ export default function Register() {
                     {erro && <p style={{ color: 'red', marginTop: '10px' }}>{erro}</p>}
 
                     <div className='contentSubmitt'>
-                        <button type='submit' disabled={loading}>
-                            {loading ? 'Criando...' : 'Criar conta'}
+                        <button type='submit'>
+                           Criar conta
                         </button>
                     </div>
 

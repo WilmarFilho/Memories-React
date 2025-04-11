@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 import usePaginasCompartilhadas from '../recoil/hooks/usePaginasCompartilhadas';
 import { paginasState } from '../recoil/atoms';
 import { resetAnimations } from '../utils/animation';
-import {renderImage} from '../utils/render'
+import { renderImage } from '../utils/render'
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {
@@ -18,13 +18,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { Navigate } from 'react-router-dom';
+
+
 export default function CustomPage() {
-  
+
+  const loading = usePaginasCompartilhadas();
+
   const paginas = useRecoilValue(paginasState);
 
-  usePaginasCompartilhadas();
+  if (loading) return null;
 
-  if (!paginas || paginas.length === 0) return null;
+  if (!paginas || paginas.length === 0) {
+    return <Navigate to="/login" replace />;
+  }
 
   return (
     <div className='customPage'>
