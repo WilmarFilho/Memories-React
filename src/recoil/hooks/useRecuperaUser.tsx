@@ -1,14 +1,21 @@
-import { useEffect } from 'react'
-import { useSetRecoilState } from 'recoil'
-import { userState } from '../atoms'
+import { useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { userState } from '../atoms';
 import api from '../../services/api';
 
 export default function useRecuperaUser() {
-    const setUser = useSetRecoilState(userState)
+  const setUser = useSetRecoilState(userState);
 
-     useEffect(() => {
-        api.get('/user')
-          .then((response) => setUser(response.data))
-          .catch(() => console.log('Erro'));
-      }, []);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const { data } = await api.get('/user');
+        setUser(data);
+      } catch (error) {
+        console.error('Erro ao recuperar usuário:', error);
+      }
+    };
+
+    fetchUser();
+  }, [setUser]);
 }

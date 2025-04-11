@@ -15,32 +15,36 @@ export default function useLogin() {
   const [erro, setErro] = useState('');
 
   useEffect(() => {
-    if (auth.authenticated) {
+    if (auth?.authenticated) {
       navigate('/dashboard');
     }
-  }, []);
+  }, [auth, navigate]);
 
   const autenticarUsuario = async () => {
+    setErro(''); // limpa erro anterior
+
     try {
-      const resposta = await api.post('/login', { email, password });
-      const { access_token } = resposta.data;
+      const { data } = await api.post('/login', { email, password });
 
       const authData = {
-        token: access_token,
+        token: data.access_token,
         authenticated: true,
       };
 
-      localStorage.setItem('token', access_token);
+      localStorage.setItem('token', data.access_token);
       localStorage.setItem('auth', JSON.stringify(authData));
 
       setAuth(authData);
       navigate('/dashboard');
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        if (error.response?.status === 401) {
+        const status = error.response?.status;
+        const mensagem = error.response?.data?.mensagem;
+
+        if (status === 401) {
           setErro('Email ou senha incorretos.');
         } else {
-          setErro(error.response?.data?.mensagem || 'Erro ao fazer login. Tente novamente.');
+          setErro(mensagem || 'Erro ao fazer login. Tente novamente.');
         }
       } else {
         setErro('Erro inesperado. Verifique sua conexão.');

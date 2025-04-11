@@ -3,40 +3,56 @@ import { useParams } from 'react-router-dom';
 import api from '../../services/api';
 import Page from '../../types/page';
 import { useRecoilState } from 'recoil';
-import { imagesState, filesState, descricaoState, errorState, fieldErrorsState } from '../atoms';
+import {
+  imagesState,
+  filesState,
+  descricaoState,
+  errorState,
+  fieldErrorsState,
+} from '../atoms';
 
 export default function useEditaOuAdiciona() {
+  const { userHash, pageId } = useParams<{ userHash: string; pageId: string }>();
 
-    const { userHash, pageId } = useParams<{ userHash: string; pageId: string }>();
-    const [images, setImages] = useRecoilState(imagesState);
-    const [files, setFiles] = useRecoilState(filesState);
-    const [descricao, setDescricao] = useRecoilState(descricaoState);
-    const [error, setErro] = useRecoilState(errorState);
-    const [fieldErrors, setFieldErrors] = useRecoilState(fieldErrorsState);
+  const [images, setImages] = useRecoilState(imagesState);
+  const [files, setFiles] = useRecoilState(filesState);
+  const [descricao, setDescricao] = useRecoilState(descricaoState);
+  const [, setErro] = useRecoilState(errorState);
+  const [, setFieldErrors] = useRecoilState(fieldErrorsState);
 
-    useEffect(() => {
-        if (userHash && pageId) {
-            // Caso esteja editando uma página, buscar os dados
-            api.get(`/pages/${userHash}`).then((res) => {
-                const paginas = res.data;
-                const pagina = paginas.find((p: Page) => p.id === Number(pageId));
-                if (pagina) {
-                    setDescricao(pagina.descricao);
-                    setImages([
-                        `https://apimemories.celleta.com/${pagina.img_01}`,
-                        `https://apimemories.celleta.com/${pagina.img_02}`,
-                        `https://apimemories.celleta.com/${pagina.img_03}`,
-                    ]);
-                    setFiles([null, null, null]); // Garante que os arquivos serão enviados apenas se forem trocados
-                }
-            });
-        } else {
-            // Caso esteja criando nova página, limpar os dados anteriores
-            setDescricao('');
-            setImages([null, null, null]);
-            setFiles([null, null, null]);
-            setErro('');
-            setFieldErrors({});
+  useEffect(() => {
+    const limparCampos = () => {
+      setDescricao('');
+      setImages([null, null, null]);
+      setFiles([null, null, null]);
+      setErro('');
+      setFieldErrors({});
+    };
+
+    const carregarPagina = async () => {
+      try {
+        const { data: paginas } = await api.get(`/pages/${userHash}`);
+        const pagina = paginas.find((p: Page) => p.id === Number(pageId));
+
+        if (pagina) {
+          setDescricao(pagina.descricao);
+          setImages([
+            `https://apimemories.celleta.com/${pagina.img_01}`,
+            `https://apimemories.celleta.com/${pagina.img_02}`,
+            `https://apimemories.celleta.com/${pagina.img_03}`,
+          ]);
+          setFiles([null, null, null]); // Para garantir que os arquivos só sejam enviados se alterados
         }
-    }, [userHash, pageId]);
+      } catch (err) {
+        console.error('Erro ao carregar página:', err);
+        limparCampos();
+      }
+    };
+
+    if (userHash && pageId) {
+      carregarPagina();
+    } else {
+      limparCampos();
+    }
+  }, [userHash, pageId]);
 }
