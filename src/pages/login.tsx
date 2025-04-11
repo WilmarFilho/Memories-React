@@ -28,7 +28,7 @@ export default function Login() {
   };
 
   return (
-    <section className="login">
+    <section className="login row">
       <article className='col-12 col-md-9 col-lg-6'>
         <div className='titles'>
           <h1>Faça Login</h1>

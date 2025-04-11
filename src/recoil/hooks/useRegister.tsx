@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
+import { useState, useEffect } from 'react';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
 import axios from 'axios';
 
 import { authState } from '../atoms';
@@ -14,8 +14,15 @@ export default function useRegister() {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [erro, setErro] = useState('');
+    const auth = useRecoilValue(authState);
 
     const RetornaLogin = () => navigate('/login');
+
+    useEffect(() => {
+        if (auth?.authenticated) {
+            navigate('/dashboard');
+        }
+    }, [auth, navigate]);
 
     const validarCampos = () => {
         if (senha.length < 8) {
