@@ -6,8 +6,13 @@ export default function Register() {
 
     const { nome, email, senha, erro, RetornaLogin, registrarUsuario, setSenha, setEmail, setNome } = useRegister()
 
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        registrarUsuario();
+    };
+
     return (
-        <section className="login">
+        <section className="register">
             <article className='col-12 col-md-9 col-lg-6'>
                 <div className='titles'>
                     <h1>Crie sua conta</h1>
@@ -16,14 +21,12 @@ export default function Register() {
 
                 <form
                     className='inputs'
-                    onSubmit={(e) => {
-                        e.preventDefault();
-                        registrarUsuario();
-                    }}
+                    onSubmit={handleSubmit}
                 >
                     <div className='contentInput'>
-                        <label>Digite seu nome completo</label>
+                        <label htmlFor='nome'>Digite seu nome completo</label>
                         <input
+                            id='nome'
                             type='text'
                             placeholder='Danilo Alves Santos'
                             value={nome}
@@ -32,8 +35,9 @@ export default function Register() {
                         />
                     </div>
                     <div className='contentInput'>
-                        <label>Digite seu email :</label>
+                        <label htmlFor='email'>Digite seu email :</label>
                         <input
+                            id='email'
                             type='email'
                             placeholder='daniloalmeida32@hotmail.com'
                             value={email}
@@ -42,10 +46,11 @@ export default function Register() {
                         />
                     </div>
                     <div className='contentInput'>
-                        <label>Digite sua senha :</label>
+                        <label htmlFor='senha'>Digite sua senha :</label>
                         <input
+                            id='senha'
                             type='password'
-                            placeholder='••••••••'
+                            placeholder='********'
                             value={senha}
                             onChange={(e) => setSenha(e.target.value)}
                             required
@@ -56,7 +61,7 @@ export default function Register() {
 
                     <div className='contentSubmitt'>
                         <button type='submit'>
-                           Criar conta
+                            Criar conta
                         </button>
                     </div>
 

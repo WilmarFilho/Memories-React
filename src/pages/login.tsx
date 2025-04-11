@@ -4,7 +4,7 @@ import CookieConsent from '../components/Cookies/index';
 import useLogin from '../recoil/hooks/useLogin';
 
 export default function Login() {
-  
+
   const {
     email,
     setEmail,
@@ -14,6 +14,11 @@ export default function Login() {
     autenticarUsuario,
     goToRegister,
   } = useLogin();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    autenticarUsuario();
+  };
 
   return (
     <section className="login">
@@ -25,14 +30,12 @@ export default function Login() {
 
         <form
           className="inputs"
-          onSubmit={(e) => {
-            e.preventDefault();
-            autenticarUsuario();
-          }}
+          onSubmit={handleSubmit}
         >
           <div className='contentInput'>
-            <label>Digite seu email :</label>
+            <label htmlFor='email'>Digite seu email :</label>
             <input
+              id='email'
               required
               type='email'
               placeholder='daniloalmeida32@hotmail.com'
@@ -41,8 +44,9 @@ export default function Login() {
             />
           </div>
           <div className='contentInput'>
-            <label>Digite sua senha :</label>
+            <label htmlFor='senha'>Digite sua senha :</label>
             <input
+              id='senha'
               required
               type='password'
               placeholder='••••••••'
@@ -54,7 +58,7 @@ export default function Login() {
           {erro && <p style={{ color: 'red', marginTop: '10px' }}>{erro}</p>}
 
           <div className='contentSubmitt'>
-            <button onClick={autenticarUsuario}>ENTRAR</button>
+            <button type='submit'>ENTRAR</button>
           </div>
           <p className='rodapeLogin'>
             Não tem uma conta? <span onClick={goToRegister}>Crie Agora</span>
