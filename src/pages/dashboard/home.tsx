@@ -4,22 +4,22 @@ import { useRecoilValue } from 'recoil';
 import { useEffect } from 'react';
 
 // Estados globais
-import { paginasState, userState } from '../recoil/atoms';
+import { paginasState, userState } from '../../recoil/atoms';
 
 // Hooks personalizados
-import usePaginasUsuarios from '../recoil/hooks/usePaginasUsuarios';
-import useRecuperaUser from '../recoil/hooks/useRecuperaUser';
-import useFeedback from '../recoil/hooks/useFeedback';
+import usePaginasUsuarios from '../../recoil/hooks/usePaginasUsuarios';
+import useRecuperaUser from '../../recoil/hooks/useRecuperaUser';
+import useFeedback from '../../recoil/hooks/useFeedback';
 
 // Componentes
-import FeedbackModal from '../components/FeedBackModal/FeedbackModal';
-import CardPageList from '../components/CardComponents/CardPage';
-import ButtonMain from '../components/Buttons';
-import NotFound from '../components/NotFound';
-import CardQr from '../components/CardQr';
+import FeedbackModal from '../../components/FeedBackModal/FeedbackModal';
+import CardPageList from '../../components/CardComponents/CardPage';
+import ButtonMain from '../../components/Buttons';
+import NotFound from '../../components/NotFound';
+import CardQr from '../../components/CardQr';
 
 // Estilos
-import './assets/index.css';
+import './index.css';
 
 
 export default function Home() {

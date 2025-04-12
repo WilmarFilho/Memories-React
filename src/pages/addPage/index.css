@@ -1,0 +1,122 @@
+.addPage {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(3px);
+    box-shadow: inset 0 0 40px -5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    border-radius: 50px;
+    padding: 64px;
+    justify-content: center;
+    gap: 24px;
+    align-items: start;
+}
+
+.addPage div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.imagePreviewWrapper button.removeImageBtn {
+    margin: 25px !important;
+    width: 60px;
+    height: 60px;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    background-color: red;
+}
+
+.previewImages {
+    display: flex;
+    flex-direction: row !important;
+    justify-content: space-around;
+}
+
+.imagePreview {
+    background-image: url('../assets/bgPolaroid.webp');
+    background-size: cover;
+    background-position: center;
+    height: 420px;
+    width: 358px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 350px;
+        width: 278px;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 260px;
+        width: 220px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.999px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 190px;
+        width: 150px;
+    }
+}
+
+@media (min-width: 529px) and (max-width: 767.9px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 275px;
+        width: 100%;
+    }
+
+    .previewImages {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addPage {
+        padding: 2em;
+    }
+    .addPage p,
+    .addPage label {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 528.99px) {
+    .imagePreview {
+        background-size: cover;
+        background-position: center;
+        height: 275px;
+        width: 100%;
+    }
+
+    .previewImages {
+        flex-direction: column !important;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .addPage {
+        padding: 2em;
+    }
+    .addPage p,
+    .addPage label {
+        font-size: 14px;
+    }
+}

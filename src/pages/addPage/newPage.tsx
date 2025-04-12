@@ -7,19 +7,19 @@ import {
     filesState,
     descricaoState,
     fieldErrorsState
-} from '../recoil/atoms';
+} from '../../recoil/atoms';
 
 // Hooks
-import useEditaOuAdiciona from '../recoil/hooks/useEditaOuAdiciona';
-import useAdicionaPage from '../recoil/hooks/useAdicionaPage';
+import useEditaOuAdiciona from '../../recoil/hooks/useEditaOuAdiciona';
+import useAdicionaPage from '../../recoil/hooks/useAdicionaPage';
 
 // Componentes
-import ButtonMain from '../components/Buttons';
-import InputImage from '../components/InputsCustom/inputImage';
-import InputDescricao from '../components/InputsCustom/inputDescricao';
+import ButtonMain from '../../components/Buttons';
+import InputImage from '../../components/InputsCustom/inputImage';
+import InputDescricao from '../../components/InputsCustom/inputDescricao';
 
 // Estilos
-import './assets/index.css';
+import './index.css';
 
 export default function Newpage() {
     const { pageId } = useParams<{ userHash: string; pageId: string }>();

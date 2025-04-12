@@ -1,0 +1,152 @@
+footer {
+    padding: 64px var(--padding-global) 0 var(--padding-global) ;
+    background-color: #121212;
+    border-radius: 90px 90px 0 0;
+    color: #ffffffc5;
+    text-transform: uppercase;
+}
+
+.topFooter {
+    padding: 0 0 64px 0;
+}
+
+footer h4 {
+    font-family: Happy Monkey;
+    font-size: 36px;
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+footer ul li a:hover {
+    color: #E32431;
+    transition: .3s;
+}
+
+.iconsFooter {
+    display: flex;
+    gap: 10px;
+}
+
+.content-Menu, .content-Menu-2, .content-Logo-Footer {
+    height: 225px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+
+.footerWrapper {
+    height: 80px;
+}
+
+.wrapperSobre {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer p, footer li {
+    font-size: 16px;
+}
+
+.copy {
+    border-top: 1px solid #ffffffb2;
+    height: 82px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.bio {
+    font-size: 24px;
+    text-transform: none;
+}
+
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+    .bio {
+        font-size: 20px;
+        text-transform: none;
+    }
+    .content-Logo-Footer {
+        height: auto;
+    }
+}
+
+
+@media (min-width: 993px) and (max-width: 1200px) {
+    .bio {
+        font-size: 20px;
+        text-transform: none;
+    }
+    .content-Logo-Footer {
+        height: auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .bio {
+        font-size: 16px;
+        text-transform: none;
+    }
+    footer h4 {
+        font-size: 30px;
+    }
+    footer p, footer li {
+        font-size: 14px;
+    }
+    .content-Logo-Footer {
+        height: auto;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 767.9px) {
+    .bio {
+        font-size: 16px;
+        text-transform: none;
+    }
+    .topFooter {
+        gap: 40px;
+        padding: 0;
+    }
+    footer {
+        padding: 40px 0 0 0;
+        border-radius: 30px 30px 0 0;
+        justify-items: center;
+    }
+    footer h4 {
+        font-size: 26px;
+    }
+    footer p, footer li {
+        font-size: 12px;
+    }
+    .wrapperSobre {
+        height: 100%;
+    }
+    .footerWrapper {
+        height: 60px;
+    }
+    .content-Menu, .content-Menu-2, .content-Logo-Footer {
+        height: auto;
+    }
+    .content-Menu-2 {
+        padding-bottom: 40px;
+    }
+    .copy {
+        width: 85%;
+    }
+    .copy p {
+        font-size: 12px;
+        text-align: center;
+    }
+}
+

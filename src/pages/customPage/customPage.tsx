@@ -11,14 +11,15 @@ import {
 } from 'swiper/modules';
 
 // Estado global e hooks
-import usePaginasCompartilhadas from '../recoil/hooks/usePaginasCompartilhadas';
-import { paginasState } from '../recoil/atoms';
+import usePaginasCompartilhadas from '../../recoil/hooks/usePaginasCompartilhadas';
+import { paginasState } from '../../recoil/atoms';
 
 // Utilitários
-import { resetAnimations } from '../utils/animation';
-import { renderImage } from '../utils/render';
+import { resetAnimations } from '../../utils/animation';
+import { renderImage } from '../../utils/render';
 
-// Estilos do Swiper
+// Estilos
+import './index.css'
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';

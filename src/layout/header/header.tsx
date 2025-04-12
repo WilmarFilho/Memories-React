@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import useLogout from '../recoil/hooks/useLogout';
+import useLogout from '../../recoil/hooks/useLogout';
+import './index.css'
 
 export default function Header() {
   const navigate = useNavigate();

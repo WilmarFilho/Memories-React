@@ -1,13 +1,17 @@
 import { useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { Outlet } from 'react-router-dom';
-//Components
-import Header from './header';
-import Footer from './footer';
+import { lazy, Suspense } from 'react';
+
 //Estilo
 import './assets/index.css';
+
 //Estados
 import { authState } from '../recoil/atoms';
+
+//Components
+const Header = lazy(() => import('./header/header'));
+const Footer = lazy(() => import('./footer/footer'));
 
 export default function Layout() {
   const auth = useRecoilValue(authState);
@@ -19,14 +23,16 @@ export default function Layout() {
     layoutPaths.some((path) => location.pathname.startsWith(path));
 
   return (
-    <div>
-      {showLayout && <Header />}
+    <Suspense fallback={<div>Carregando...</div>}>
+      <div>
+        {showLayout && <Header />}
 
-      <main>
-        <Outlet />
-      </main>
+        <main>
+          <Outlet />
+        </main>
 
-      {showLayout && <Footer />}
-    </div>
+        {showLayout && <Footer />}
+      </div>
+    </Suspense>
   );
 }
