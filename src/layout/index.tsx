@@ -23,7 +23,7 @@ export default function Layout() {
     layoutPaths.some((path) => location.pathname.startsWith(path));
 
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense fallback={<div>.</div>}>
       <div>
         {showLayout && <Header />}
 

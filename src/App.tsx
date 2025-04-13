@@ -19,7 +19,7 @@ function App() {
   return (
     <RecoilRoot>
       <Router>
-        <Suspense fallback={<div>Carregando...</div>}>
+        <Suspense fallback={<div>.</div>}>
           <Routes>
 
             <Route path="/" element={<Navigate to="/login" />} />
@@ -46,6 +46,8 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="pagina/:hash" element={<CustomPage />} />
             </Route>
+
+            <Route path="*" element={<Navigate to="/login" replace />} />
 
           </Routes>
         </Suspense>
